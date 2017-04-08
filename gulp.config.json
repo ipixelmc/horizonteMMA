@@ -1,0 +1,6 @@
+{
+	"app":"app/",
+	"dist":"dist/",
+	"cssDist": "dist/css/",
+	"jsDist": ["./app/js/**/*.js","!./app/develop/**"]
+}

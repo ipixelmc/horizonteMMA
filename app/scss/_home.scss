@@ -1,0 +1,65 @@
+body{
+	overflow-x : hidden;
+}
+.search-section{
+	background-color: $body-bg;
+	color: $text-color;
+	display: inline;
+	section.filters{
+		width: 59vw;
+		padding: 1em 1.3em;
+		.slider.slider-horizontal{
+			width: 100%;
+		}
+	}
+
+	section.list{
+		.carousel{
+			width: 402px;
+			height: 298px;
+		}
+		.rn-carousel-controls{
+			.rn-carousel-control-next{
+				height: 298px;
+				top: 0;
+				width: 200px;
+				left: 50%;
+				line-height: 298px;
+				padding-left: 25%;
+				color: white;
+			}
+			.rn-carousel-control-prev{
+				height: 298px;
+				top: 0;
+				padding-left: 5%;
+				width: 200px;
+				left: 15%;
+				line-height: 298px;
+				color: white;
+			}
+		}
+		.content div{
+			max-width: 402px;
+			margin: auto;
+		}
+		@include respond-to(desktop) { 
+			width: 59vw;
+			float: left;
+			max-height: 100vh;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+	}
+	section.map{
+		position: absolute;
+		right: 0;
+		top: 0;
+		@include respond-to(desktop) { 
+			width: 40vw;
+			float: right;
+		}
+		#map-search{
+			height: 100vh;
+		}
+	}
+}

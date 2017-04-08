@@ -1,0 +1,24 @@
+<div ng-controller="ListController as ctrl">
+  <div class="row">
+    <div class="col-md-6 content" ng-repeat ="ins in ctrl.institutes">
+      <div>
+        <ul rn-carousel class="carousel" rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-transition="fadeAndSlide">
+          <li ng-repeat="image in ins.images track by $index">
+            <img ng-src="{{image}}"/>
+
+          </li>
+        </ul>
+        <div class="description">
+         <h5>{{ins.name}}</h5>
+         <span>distance:{{ins.distance | number: 2}} km</span>
+         <address>{{ins.address}}</address>
+         <div class="discipline">
+           <span ng-repeat="dis in ins.disciplinesObj">
+            {{dis.name}} <span ng-if="!$last">|</span>
+          </span>
+        </div>
+        <span>{{ins.phone}}</span> . <a href="{{ins.webPage}}">{{ins.webPage}}</a>
+      </div> 
+    </div> 
+  </div>
+</div>
