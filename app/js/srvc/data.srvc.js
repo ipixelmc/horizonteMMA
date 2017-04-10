@@ -8,7 +8,7 @@
     var develoment = true;
     //urls
     var filtersUrl = {
-      discipline: develoment ? "/data/discipline.json" : "lalala";
+      discipline: develoment ? "/data/discipline.json" : "lalala"
     };
     var instituteUrl = develoment ? "/data/institutes.json" : "lalal";
     var errorCallbackService = function (error) {
