@@ -5,11 +5,12 @@
   .service('DataService', dataService);
   dataService.$inject = ['$http'];
   function dataService($http) {
+    var develoment = true;
     //urls
     var filtersUrl = {
-      discipline: "/data/discipline.json"
+      discipline: develoment ? "/data/discipline.json" : "lalala";
     };
-    var instituteUrl = "/data/institutes.json";
+    var instituteUrl = develoment ? "/data/institutes.json" : "lalal";
     var errorCallbackService = function (error) {
       console.log("Ha ocurrido un error en la petición");
       console.log(error);

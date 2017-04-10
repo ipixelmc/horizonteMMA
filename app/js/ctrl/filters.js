@@ -109,7 +109,6 @@
      ctrl.locationSelected = place;
      setOriginPoint(ctrl.locationSelected.geometry.location);
      ctrl.filterByLocation();
-    
    }
 
    init();
