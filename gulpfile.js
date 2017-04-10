@@ -9,6 +9,9 @@ $.useref = require('gulp-useref');
 $.concat = require('gulp-concat');
 $.cssnano = require('gulp-cssnano');
 $.uglify = require('gulp-uglify');
+$.del = require('del');
+$.gulpIf = require('gulp-if');
+$.runSequence = require('run-sequence');
 $.imagemin = require('gulp-imagemin');
 $.browserSync = require('browser-sync');
 
@@ -80,9 +83,9 @@ gulp.task('images', function(){
   .pipe(gulp.dest(paths.dist + 'images'))
 });
 
-gulp.task('resources', function() {
-  return gulp.src(paths.app + 'js/**/*')
-  .pipe(gulp.dest(paths.dist + 'js'))
+gulp.task('models', function() {
+  return gulp.src(paths.app + 'data/**/*')
+  .pipe(gulp.dest(paths.dist + 'data'))
 })
 
 
@@ -103,7 +106,7 @@ gulp.task('clean:dist', function() {
 
 gulp.task('dist', function (callback) {
   $.runSequence('clean:dist', 'sass', 'views',
-    ['useref', 'images', 'fonts','resources'],
+    ['useref', 'images', 'fonts','models'],
     callback
   )
     console.log('Building files');

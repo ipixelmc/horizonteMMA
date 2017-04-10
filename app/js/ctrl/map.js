@@ -6,7 +6,8 @@
   mapController.$inject = ['ModelService','$scope','MapService'];
   function mapController(modelService,$scope, mapService) {
     var ctrl = this;
-    ctrl.pointUser;
+    ctrl.userPoint;
+    ctrl.originPoint;
     var map;
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -35,20 +36,14 @@
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-          ctrl.pointUser = pos;
-          $scope.$apply(function () {
-            for(var i = 0 ; i<ctrl.institutes.length; i++){
-              ctrl.institutes[i].distance = mapService.calculateDistance(ctrl.pointUser,ctrl.institutes[i]);
-            }    
-          });
+          ctrl.userPoint = pos;
           infoWindow.setPosition(pos);
           infoWindow.setContent('Location found.');
           map.setCenter(pos);
           $scope.$apply(function () {
-              for(var i = 0 ; i<ctrl.institutes.length; i++){
-                ctrl.institutes[i].distance = mapService.calculateDistance(ctrl.pointUser,ctrl.institutes[i]);
-              }    
-              mapService.setFinalCalculate(true);
+            mapService.setOriginPoint(pos);
+            mapService.setUserPoint(pos);  
+            mapService.calculateDistance();
           });
         }, function() {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -62,6 +57,8 @@
       google.maps.event.addDomListener(window, 'load', $scope.initialize);   
 
       var infowindow = new google.maps.InfoWindow();
+
+
       var initPointsInstitute = function(){
        // var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -77,11 +74,10 @@
 
      };
      var init = function(){
-       modelService.getInstitutes(
-        function(data){
-         ctrl.institutes = data;
-       });
+      ctrl.institutes =  modelService.getInstitutes();
        ctrl.institudeSelected = modelService.getInstitudeSelected();
+       ctrl.userPoint = mapService.getUserPoint();
+       ctrl.originPoint = mapService.getOriginPoint();
      }
      init();
 

@@ -11,6 +11,8 @@ function Institute(obj) {
 	this.show = true;
 	this.phone = obj.phone ? obj.phone : "";
 	this.webPage = obj.webPage ? obj.webPage : "";
+	this.showByDiscipline = true;
+	this.showByLocation = true;
 
 	Institute.prototype.update = function(o){
 		_.assignIn(this,o);

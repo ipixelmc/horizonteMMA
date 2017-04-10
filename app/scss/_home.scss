@@ -11,6 +11,23 @@ body{
 		.slider.slider-horizontal{
 			width: 100%;
 		}
+
+		.location{
+			.results{
+				label{
+					margin: 20px 10px;
+				}
+				&>div{
+					border: 1px solid $gray-dark;
+					padding: 5px;
+					margin: 0 0 5px 20px;
+					cursor: pointer;
+					&:hover{
+						background-color: $gray;
+					}
+				}
+			}
+		}
 	}
 
 	section.list{

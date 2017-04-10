@@ -6,6 +6,7 @@
   "author": "ipixelmc",
   "devDependencies": {
     "browser-sync": "^2.3.1",
+    "del": "^2.2.1",
     "glob": "^5.0.3",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.1.0",

@@ -1,21 +1,32 @@
 <div ng-controller="FiltersController as ctrl">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<label>Disciplina:</label>
-			<select ng-options="item as item.name for item in ctrl.disciplines track by item.id" ng-model="ctrl.model.discipline" class="form-control"></select>
-		</div>
-		<div class="col-md-6">
-		<label>Ubicaci&oacute;n:</label>
-		<input type="text" name="" ng-model="ctrl.model.location" class="form-control">
+			<select ng-options="item as item.name for item in ctrl.disciplines track by item.id" ng-model="ctrl.model.discipline" class="form-control" ng-change="ctrl.filterByDiscipline();"></select>
 		</div>
 	</div>
 	<div class="row" ng-if="ctrl.distanceRange.status">
-		<div class="col-md-12">
-			<label>Cercanía:</label>
-			<input id="range-distance" type="text" class="form-control" value="" ng-init="ctrl.initSlider()"/>
+		<div class="col-md-6 location">
+			<label>Ubicaci&oacute;n:</label> <span class="location-selected">{{ctrl.locationSelected.formatted_address}}</span>
+			<form ng-submit="ctrl.searchPlaces();">
+				
+			<input type="text" name="" ng-model="ctrl.model.location" class="form-control">
+			<button class="btn" type="submit">Buscar</button>
+			</form>
+			<div class="row results" ng-show="ctrl.places.show" >
+				<label>Resultados:</label>
+				<div class="col-md-12" ng-repeat="place in ctrl.places.list" ng-click="ctrl.setPlace(place);">
+					{{place.formatted_address}}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<label><input type="checkbox" ng-model="ctrl.distance" name="" class=""> Cercanía:</label>
+			<input ng-disabled="ctrl.distance" id="range-distance" type="text" class="form-control" value="" ng-init="ctrl.initSlider()"/>
+
 		</div>
 	</div>
 
-<a class="btn" ng-click="ctrl.changeInstitutes();">Cambiar</a>
+	<a class="btn" ng-click="ctrl.changeInstitutes();">Cambiar</a>
 </div>
 

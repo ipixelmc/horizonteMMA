@@ -7,10 +7,7 @@
   function listController(modelService) {
     var ctrl = this;
    	var init = function(){
-   		modelService.getInstitutes(
-   			function(data){
-   				ctrl.institutes = data;
-   			});
+   		 ctrl.institutes = modelService.getInstitutes();
    	}
 
    	init();
