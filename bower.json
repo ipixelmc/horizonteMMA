@@ -22,6 +22,8 @@
     "bootstrap": "^3.3.6"
   },
   "dependencies": {
-    "seiyria-bootstrap-slider": "^9.7.2"
+    "seiyria-bootstrap-slider": "^9.7.2",
+    "angular-touch": "^1.6.4",
+    "angular-carousel": "^1.0.1"
   }
 }
