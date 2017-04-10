@@ -5,12 +5,16 @@
   .factory('ModelService', modelService);
   modelService.$inject = ['DataService'];
   function modelService(dataService) {
-    
+
     var data = {
       institutes :  new Array(0),
       disciplines: new Array(0),
       instituteSelected : new Institute({}),
-      filters : {discipline: new Object()}
+      filters : {
+        discipline: new Object(),
+        activeDistance: new Boolean(false),
+        distance: 0
+      }
     };
 
     //Get catalogs
@@ -43,9 +47,9 @@
     
     var getDisciplines = function(){
       dataService.getDisciplines(function(dataSrvc){
-        
+
         initCatalog({
-          list: dataSrvc.catalog,
+          list: dataSrvc,
           assignData: data.disciplines,
           textAll: "Todas las disciplinas",
           assignFirst: data.filters.discipline
@@ -56,7 +60,7 @@
 
     var getInstitutes = function(){
      dataService.getInstitutes(function(dataSrvc){
-      initInstitutes(dataSrvc.institutes);
+      initInstitutes(dataSrvc);
     });
    }
 
@@ -74,6 +78,9 @@
   },
   getInstitudeSelected: function(){
     return data.instituteSelected;
+  },
+  getActiveDistance : function(value){
+    return data.filters.activeDistance;
   },
   changeInstitutes: function(){
     data.institutes[0].show = false;

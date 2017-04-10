@@ -2,6 +2,8 @@
   'use strict';
   angular.module('horizonteMMAModule', [
     'ngTouch',
-    'angular-carousel'
+    'angular-carousel',
+    'rzModule',
+    'ngMap'
     ])
 })();

@@ -1,8 +1,21 @@
 <div ng-controller="MapController as ctrl">
-<div id="map-search"></div>
-<div class="row">
+<!--<div class="row">
 	Testing: <br/>
 	userpoint: {{ctrl.userPoint}}<br/>
-	originpoint : {{ctrl.originPoint}}
-</div>
+	originpoint : {{ctrl.originPoint}}<br/>
+	filters: {{ctrl.filters}}
+</div>-->
+<button class="btn set-position" ng-click="ctrl.setUserPotition()">Usar mi ubicación</button>
+<ng-map id="search-map" zoom="11" center="[{{ctrl.originPoint.lat}}, {{ctrl.originPoint.lng}}]">
+	 <custom-marker ng-repeat="ins in ctrl.institutes"
+      id="{{ins.id}}"
+      on-click="ctrl.map.showInfoWindow('foo', 'custom-marker-'+$index)"
+      position="{{ins.point}}">
+      <div class="marker" ng-class="ins.inHover ? 'active': ''">
+        {{ins.name}}
+      </div>
+    </custom-marker>
+
+</ng-map>
+  
 </div>

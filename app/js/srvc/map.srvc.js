@@ -7,12 +7,13 @@
   function mapService($http, modelService) {
     var API_KEY = "AIzaSyD5JToX3gMDJdSG_CX1UmTPx5TIVZTuso8";
     var urlSearchPlace = "https://maps.googleapis.com/maps/api/geocode/json?"+
-                         "address=STRING"+
-                         "&components=country:MX"+
-                         "&key=API_KEY";
+    "address=STRING"+
+    "&components=country:MX"+
+    "&key=API_KEY";
     function deg2rad(deg) {
       return deg * (Math.PI/180)
     }
+    var institutes = modelService.getInstitutes();
     var distanceRange = new Distance({});
     var originPoint = new Object({});
     var userPoint = new Object();
@@ -30,56 +31,61 @@
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
       var d = R * c;
-      distanceRange.max = d>distanceRange.max ? d: distanceRange.max;
-      distanceRange.min = distanceRange.min==0 || d<distanceRange.min ? d: distanceRange.min;
+      if(point.innerRange){
+        distanceRange.max = d>distanceRange.max ? d: distanceRange.max;
+        distanceRange.min = distanceRange.min==0 || d<distanceRange.min ? d: distanceRange.min;
+      }
+      
       return d;
     }
     var mapService = {
       calculateDistance : function(){
-        var institutes = modelService.getInstitutes();
+        distanceRange.status = false;
+        distanceRange.max = 0;
+        distanceRange.min = 0;
         angular.forEach(institutes, function(ins, key){
-              ins.distance = calculateDistance({lat: ins.lat, lng: ins.lng});
+          ins.distance = calculateDistance({lat: ins.lat, lng: ins.lng, innerRange: ins.showByLocation});
         });
         mapService.setFinalCalculate(true);
-    },
-    getDistanceMax : function(){
-      return distanceRange.max;
-    },
-    getDistanceMin : function () {
-      return distanceRange.min;
-    },
-    getDistanceRange : function () {
-      return distanceRange;
-    },
-    setFinalCalculate : function (status) {
-      distanceRange.status = status;
-    },
-    setUserPoint: function(point){
-      userPoint.lat = point.lat;
-      userPoint.lng =  point.lng;
-    },
-    getUserPoint: function(){
-      return userPoint;
-    },
-    setOriginPoint : function(point){
-      originPoint.lat = point.lat;
-      originPoint.lng = point.lng;
-    },
-    getOriginPoint : function(){
-      return originPoint;
-    },
-    searchPlace: function (text, callbackSuccess, callbackFail) {
-      var urlFinal ="";
-      urlFinal = urlSearchPlace.replace("API_KEY",API_KEY);
-      urlFinal = urlFinal.replace("STRING", text);
+      },
+      getDistanceMax : function(){
+        return distanceRange.max;
+      },
+      getDistanceMin : function () {
+        return distanceRange.min;
+      },
+      getDistanceRange : function () {
+        return distanceRange;
+      },
+      setFinalCalculate : function (status) {
+        distanceRange.status = status;
+      },
+      setUserPoint: function(point){
+        userPoint.lat = point.lat;
+        userPoint.lng =  point.lng;
+      },
+      getUserPoint: function(){
+        return userPoint;
+      },
+      setOriginPoint : function(point){
+        originPoint.lat = point.lat;
+        originPoint.lng = point.lng;
+      },
+      getOriginPoint : function(){
+        return originPoint;
+      },
+      searchPlace: function (text, callbackSuccess, callbackFail) {
+        var urlFinal ="";
+        urlFinal = urlSearchPlace.replace("API_KEY",API_KEY);
+        urlFinal = urlFinal.replace("STRING", text);
       //urlFinal = urlFinal.replace("LOCATION_POINT",originPoint.lat+","+originPoint.lng);
-       $http({
+      $http({
         method: 'GET',
         url: urlFinal
       }).then(function successCallback(response) {
-          callbackSuccess(response.data);
+        callbackSuccess(response.data);
       }, function errorCallback(response) {
-          callbackFail(response);
+        callbackFail(response);
       });
     }
   };

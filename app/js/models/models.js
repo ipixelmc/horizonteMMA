@@ -13,7 +13,10 @@ function Institute(obj) {
 	this.webPage = obj.webPage ? obj.webPage : "";
 	this.showByDiscipline = true;
 	this.showByLocation = true;
-
+	this.showByDistance = true;
+	if(this.lat!=0 && this.lng!=0){
+		this.point = [this.lat,this.lng];
+	}
 	Institute.prototype.update = function(o){
 		_.assignIn(this,o);
 	};

@@ -3,8 +3,8 @@
   'use strict';
   angular.module('horizonteMMAModule')
   .controller('FiltersController', homeController);
-  homeController.$inject = ['ModelService', 'MapService'];
-  function homeController(modelService, mapService) {
+  homeController.$inject = ['ModelService', 'MapService','$scope','$timeout'];
+  function homeController(modelService, mapService, $scope, $timeout) {
     var ctrl = this;
     ctrl.model= {};
     var slider;
@@ -16,6 +16,7 @@
       ctrl.distanceRange = mapService.getDistanceRange();
       ctrl.institutes = modelService.getInstitutes();
       ctrl.userPoint = mapService.getUserPoint();
+      //ctrl.activeDistance = modelService.getActiveDistance();
     }
 
     ctrl.changeInstitutes = function(){
@@ -24,23 +25,54 @@
     }
 
     ctrl.initSlider = function () {
-
-      slider = new Slider('#range-distance',{
-        max: ctrl.distanceRange.max,
-        min: ctrl.distanceRange.min,
-        dataSliderStep: 10,
-        focus: true,
-        value: [ctrl.distanceRange.max,ctrl.distanceRange.min]
+      ctrl.distance = Math.ceil(ctrl.distanceRange.max);
+    ctrl.model.distance = ctrl.distance;
+      ctrl.sliderOptions = {
+        floor: 0,
+        ceil: ctrl.distanceRange.max,
+        showSelectionBar: true,
+        step: ctrl.distance / 10 ,
+        //showTicks: true,
+        onChange : function(){
+          ctrl.model.distance = ctrl.distance;
+          filterByDistance();
+        }
+      };
+      $timeout(function () {
+        $scope.$broadcast('rzSliderForceRender');
       });
+    }
+
+    var filterByDistance = function(){
+      _.forEach(ctrl.institutes, function(el) {
+        if(el.distance < ctrl.distance){
+          _.set(el, 'showByDistance', true);  
+        }else{
+          _.set(el, 'showByDistance', false);
+        } 
+      });
+    }
+    ctrl.activateDistance = function(){
+      if(ctrl.activeDistance==true){
+        ctrl.initSlider(); 
+      ctrl.model.activeDistance = true;
+        filterByDistance();  
+      }else{
+        ctrl.model.activeDistance = false;
+        _.forEach(ctrl.institutes, function(el) {
+          _.set(el, 'showByDistance', true);
+        });
+      }
+
     }
 
     ctrl.places = {};
     ctrl.places.show =false;
 
     ctrl.searchPlaces = function () {
-      if(ctrl.model.location != ""){
+      if(ctrl.txtLocation != ""){
         mapService.searchPlace(
-          ctrl.model.location,
+          ctrl.txtLocation,
           function(data){
             ctrl.places.show =true;
             ctrl.places.list = data.results;
@@ -51,11 +83,14 @@
           }
           )
       }else{
+        ctrl.model.changeLocation = !ctrl.model.changeLocation;
         ctrl.places.show = false;
-         _.forEach(ctrl.institutes, function(el) {
+        _.forEach(ctrl.institutes, function(el) {
           _.set(el, 'showByLocation', true);
         });
-         setOriginPoint(ctrl.userPoint);
+        setOriginPoint(ctrl.userPoint);
+        ctrl.activeDistance = false;
+        ctrl.activateDistance();
       }
     }
 
@@ -68,28 +103,27 @@
           }else{
             _.set(el, 'showByDiscipline', false);
           }
-          
+
         });
       }else{
         _.forEach(ctrl.institutes, function(el) {
           _.set(el, 'showByDiscipline', true);
         });
       }
-      
     }
 
     ctrl.filterByLocation = function(){
       if(ctrl.locationSelected.formatted_address){
         var boundsPoint = ctrl.locationSelected.geometry.bounds;
         var bounds = new google.maps.LatLngBounds(boundsPoint.southwest, boundsPoint.northeast);
-        
+
         _.forEach(ctrl.institutes, function(el) {
           if(bounds.contains({lat: el.lat, lng: el.lng})){
             _.set(el, 'showByLocation', true);
           }else{
             _.set(el, 'showByLocation', false);
           }
-      });
+        });
       }else{
        _.forEach(ctrl.institutes, function(el) {
         _.set(el, 'showByLocation', true);
@@ -99,15 +133,15 @@
 
    var setOriginPoint = function(point){
      mapService.setOriginPoint(point);
-     mapService.setFinalCalculate(false);
-     mapService.calculateDistance();
-     mapService.setFinalCalculate(true);
+
    }
 
    ctrl.setPlace = function(place){
      console.log("aplicando");
      ctrl.locationSelected = place;
      setOriginPoint(ctrl.locationSelected.geometry.location);
+     mapService.calculateDistance();
+     ctrl.activateDistance();
      ctrl.filterByLocation();
    }
 

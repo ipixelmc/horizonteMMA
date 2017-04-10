@@ -1,16 +1,16 @@
 <div ng-controller="FiltersController as ctrl">
 	<div class="row">
 		<div class="col-md-12">
-			<label>Disciplina:</label>
+			<label>Disciplina:</label> 
 			<select ng-options="item as item.name for item in ctrl.disciplines track by item.id" ng-model="ctrl.model.discipline" class="form-control" ng-change="ctrl.filterByDiscipline();"></select>
 		</div>
 	</div>
-	<div class="row" ng-if="ctrl.distanceRange.status">
+	<div class="row">
 		<div class="col-md-6 location">
 			<label>Ubicaci&oacute;n:</label> <span class="location-selected">{{ctrl.locationSelected.formatted_address}}</span>
 			<form ng-submit="ctrl.searchPlaces();">
 				
-			<input type="text" name="" ng-model="ctrl.model.location" class="form-control">
+			<input type="text" name="" ng-model="ctrl.txtLocation" class="form-control">
 			<button class="btn" type="submit">Buscar</button>
 			</form>
 			<div class="row results" ng-show="ctrl.places.show" >
@@ -20,9 +20,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<label><input type="checkbox" ng-model="ctrl.distance" name="" class=""> Cercanía:</label>
-			<input ng-disabled="ctrl.distance" id="range-distance" type="text" class="form-control" value="" ng-init="ctrl.initSlider()"/>
+		<div class="col-md-6"  ng-if="ctrl.distanceRange.status">
+			<label><input type="checkbox" ng-change="ctrl.activateDistance();" ng-model="ctrl.activeDistance" name="" class=""> Cercanía (km):</label>
+			<div ng-if="ctrl.activeDistance == true " class="animated fadeIn" >
+			<rzslider
+    rz-slider-model="ctrl.distance"
+    rz-slider-options="ctrl.sliderOptions"></rzslider>
+    </div>
+			<!--<input ng-disabled="ctrl.distance" id="range-distance" type="text" class="form-control" value="" ng-init="ctrl.initSlider()"/>-->
 
 		</div>
 	</div>

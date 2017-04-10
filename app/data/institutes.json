@@ -1,5 +1,4 @@
-{
-	"institutes" : 
+
 	[
 		{
 			"id": 1,
@@ -57,4 +56,3 @@
 			"images": ["/images/fff.png","/images/fff.png","/images/fff.png","/images/fff.png","/images/fff.png"]
 		}
 	]
-}

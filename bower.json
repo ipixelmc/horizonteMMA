@@ -24,6 +24,8 @@
   "dependencies": {
     "seiyria-bootstrap-slider": "^9.7.2",
     "angular-touch": "^1.6.4",
-    "angular-carousel": "^1.0.1"
+    "angular-carousel": "^1.0.1",
+    "angularjs-slider": "^6.1.1",
+    "ngmap": "^1.18.4"
   }
 }
