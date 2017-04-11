@@ -5,17 +5,42 @@
 	originpoint : {{ctrl.originPoint}}<br/>
 	filters: {{ctrl.filters}}
 </div>-->
-<button class="btn set-position" ng-click="ctrl.setUserPotition()">Usar mi ubicación</button>
+<button class="btn set-position" ng-click="ctrl.setUserPotition()">UBICAR MI POSICIÓN</button>
 <ng-map id="search-map" zoom="11" center="[{{ctrl.originPoint.lat}}, {{ctrl.originPoint.lng}}]">
-	 <custom-marker ng-repeat="ins in ctrl.institutes"
-      id="{{ins.id}}"
-      on-click="ctrl.map.showInfoWindow('foo', 'custom-marker-'+$index)"
-      position="{{ins.point}}">
-      <div class="marker" ng-class="ins.inHover ? 'active': ''">
-        {{ins.name}}
-      </div>
-    </custom-marker>
+	<custom-marker ng-repeat="ins in ctrl.institutes"
+	id="marker_{{ins.id}}"
+	on-click="ctrl.showInfoWindow(event,$index);"
+	position="{{ins.point}}">
+	<div class="marker" ng-class="ins.inHover ? 'active': ''">
+		{{ins.name}}
+	</div>
+</custom-marker>
+
+<info-window id="infoinstitute" >
+	<div ng-non-bindable="">
+  
+		<ul rn-carousel class="carousel" rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-transition="fadeAndSlide">
+			<li ng-repeat="image in ctrl.ins.images track by $index">
+				<img ng-src="{{image}}"/>
+			</li>
+		</ul>
+  
+		<div class="description">
+			<h5>{{ctrl.ins.name}}</h5>
+			<span>distance:{{ctrl.ins.distance}} km</span>
+      <img ng-src="{{ctrl.ins.logo}}">
+			<address>{{ctrl.ins.address}}</address>
+			<div class="discipline">
+				<span ng-repeat="dis in ctrl.ins.disciplinesObj">
+					{{dis.name}} <span ng-if="!$last">|</span>
+				</span>
+			</div>
+			<span>{{ctrl.ins.phone}}</span> . <a href="{{ctrl.ins.webPage}}">{{ctrl.ins.webPage}}</a>
+		</div> 
+	</div> 
+</info-window>
+
 
 </ng-map>
-  
+
 </div>

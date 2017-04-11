@@ -3,8 +3,8 @@
   'use strict';
   angular.module('horizonteMMAModule')
   .factory('ModelService', modelService);
-  modelService.$inject = ['DataService'];
-  function modelService(dataService) {
+  modelService.$inject = ['DataService', 'MapService'];
+  function modelService(dataService, mapService) {
 
     var data = {
       institutes :  new Array(0),
@@ -19,17 +19,23 @@
 
     //Get catalogs
     var initInstitutes = function(list){
-      angular.forEach(list, function(el, key){
+      var size = list.length - 1;
+      _.forEach(list, function(ins,index) {
         var disciplinesObj = new Array();
-        angular.forEach(el.disciplines,function(dis,key){
-          var dis = _.find(data.disciplines, function(o){return o.id == dis} );
-          if(dis){
-            disciplinesObj.push(dis);
+        _.forEach(ins.disciplines, function(dis,idis){
+          var disF = _.find(data.disciplines, function(o){return o.id == dis} );
+          if(disF){
+            disciplinesObj.push(disF);
           }
         });
-        el.disciplinesObj = disciplinesObj;
-        data.institutes.push(new Institute(el));
+        ins.disciplinesObj = disciplinesObj
+        ins.distance = mapService.calculateDistance({lat: ins.lat, lng: ins.lng, innerRange: true});
+        data.institutes.push(new Institute(ins));
+        if(index == size){
+          mapService.setFinalCalculate(true);
+        }
       });
+       
     }
     var initCatalog = function(params){
       if(params.textAll){
@@ -47,7 +53,6 @@
     
     var getDisciplines = function(){
       dataService.getDisciplines(function(dataSrvc){
-
         initCatalog({
           list: dataSrvc,
           assignData: data.disciplines,
@@ -81,6 +86,15 @@
   },
   getActiveDistance : function(value){
     return data.filters.activeDistance;
+  },
+  calculateDistance: function(){
+    mapService.resetRange();
+    _.forEach(data.institutes, function(ins,index) {
+        ins.distance = mapService.calculateDistance({lat: ins.lat, lng: ins.lng, innerRange: ins.showByLocation});
+        if(index == data.institutes.length -1){
+          mapService.setFinalCalculate(true);
+        }
+      });
   },
   changeInstitutes: function(){
     data.institutes[0].show = false;

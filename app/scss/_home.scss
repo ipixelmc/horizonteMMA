@@ -83,6 +83,12 @@ body{
 		}
 		#search-map{
 			height: 100vh;
+			.ng-map-info-window{
+				.carousel{
+					height: 298px;
+					width: 402px;
+				}
+			}
 		}
 		.custom-marker{
 			font-size: 1.1em;

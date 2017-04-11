@@ -11,9 +11,12 @@ function Institute(obj) {
 	this.show = true;
 	this.phone = obj.phone ? obj.phone : "";
 	this.webPage = obj.webPage ? obj.webPage : "";
+	this.show=true;
+	this.distance = obj.distance ? obj.distance : 0;
 	this.showByDiscipline = true;
 	this.showByLocation = true;
 	this.showByDistance = true;
+	this.logo = obj.logo;
 	if(this.lat!=0 && this.lng!=0){
 		this.point = [this.lat,this.lng];
 	}

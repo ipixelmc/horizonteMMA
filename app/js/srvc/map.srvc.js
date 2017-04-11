@@ -3,8 +3,8 @@
   'use strict';
   angular.module('horizonteMMAModule')
   .service('MapService', mapService);
-  mapService.$inject = ['$http','ModelService'];
-  function mapService($http, modelService) {
+  mapService.$inject = ['$http'];
+  function mapService($http) {
     var API_KEY = "AIzaSyD5JToX3gMDJdSG_CX1UmTPx5TIVZTuso8";
     var urlSearchPlace = "https://maps.googleapis.com/maps/api/geocode/json?"+
     "address=STRING"+
@@ -13,7 +13,7 @@
     function deg2rad(deg) {
       return deg * (Math.PI/180)
     }
-    var institutes = modelService.getInstitutes();
+    
     var distanceRange = new Distance({});
     var originPoint = new Object({});
     var userPoint = new Object();
@@ -30,7 +30,7 @@
       Math.sin(Δλ/2) * Math.sin(Δλ/2);
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-      var d = R * c;
+      var d = Math.ceil(R * c );
       if(point.innerRange){
         distanceRange.max = d>distanceRange.max ? d: distanceRange.max;
         distanceRange.min = distanceRange.min==0 || d<distanceRange.min ? d: distanceRange.min;
@@ -39,14 +39,14 @@
       return d;
     }
     var mapService = {
-      calculateDistance : function(){
-        distanceRange.status = false;
+     
+      calculateDistance : function(point){
+         return calculateDistance(point);     
+      },
+      resetRange : function(){
         distanceRange.max = 0;
         distanceRange.min = 0;
-        angular.forEach(institutes, function(ins, key){
-          ins.distance = calculateDistance({lat: ins.lat, lng: ins.lng, innerRange: ins.showByLocation});
-        });
-        mapService.setFinalCalculate(true);
+        distanceRange.status = false;
       },
       getDistanceMax : function(){
         return distanceRange.max;

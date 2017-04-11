@@ -19,14 +19,9 @@
       //ctrl.activeDistance = modelService.getActiveDistance();
     }
 
-    ctrl.changeInstitutes = function(){
-      console.log(ctrl.distanceRange);
-      modelService.changeInstitutes();
-    }
-
     ctrl.initSlider = function () {
-      ctrl.distance = Math.ceil(ctrl.distanceRange.max);
-    ctrl.model.distance = ctrl.distance;
+      ctrl.distance = ctrl.distanceRange.max;
+      ctrl.model.distance = ctrl.distance;
       ctrl.sliderOptions = {
         floor: 0,
         ceil: ctrl.distanceRange.max,
@@ -45,7 +40,7 @@
 
     var filterByDistance = function(){
       _.forEach(ctrl.institutes, function(el) {
-        if(el.distance < ctrl.distance){
+        if(el.distance <= ctrl.distance){
           _.set(el, 'showByDistance', true);  
         }else{
           _.set(el, 'showByDistance', false);
@@ -55,7 +50,7 @@
     ctrl.activateDistance = function(){
       if(ctrl.activeDistance==true){
         ctrl.initSlider(); 
-      ctrl.model.activeDistance = true;
+        ctrl.model.activeDistance = true;
         filterByDistance();  
       }else{
         ctrl.model.activeDistance = false;
@@ -140,9 +135,9 @@
      console.log("aplicando");
      ctrl.locationSelected = place;
      setOriginPoint(ctrl.locationSelected.geometry.location);
-     mapService.calculateDistance();
-     ctrl.activateDistance();
      ctrl.filterByLocation();
+     modelService.calculateDistance();
+     ctrl.activateDistance();
    }
 
    init();
