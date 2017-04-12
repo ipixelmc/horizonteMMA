@@ -51,6 +51,7 @@
 
     var refreshMarkers = function(){
       if(ctrl.map){
+      ctrl.map.hideInfoWindow('infoinstitute');
        for (var key in ctrl.map.customMarkers) {
         var id = parseInt(key.replace("marker_",""));
         var ins = _.find(ctrl.institutes, function(o){return o.id == id} );

@@ -11,6 +11,34 @@ body{
 		.slider.slider-horizontal{
 			width: 100%;
 		}
+    .icon{
+        cursor: pointer;
+      }
+
+		.resume{
+			&>div
+			{
+        padding: 5px;
+				&>div{
+					border: 1px solid $gray-lighter;
+					padding: 5px;
+					cursor: pointer;
+					&:hover{
+						background-color: $gray-lighter;
+					}
+          &:first-child{
+            width: 89.9%;
+          }
+          &:last-child{
+            width: 10%;
+          }
+				}
+			}
+		}
+
+		.detailed{
+
+		}
 
 		.location{
 			.results{
@@ -102,27 +130,27 @@ body{
 				padding: 5px;
 				font-weight: bold;
 				&.active{
-				background: $brand-primary;
-				color: $gray-lighter;
+					background: $brand-primary;
+					color: $gray-lighter;
+					&:after{
+						border-color: $brand-primary transparent;
+
+					}
+				}
 				&:after{
-					border-color: $brand-primary transparent;
-					
+					content: '';
+					position: absolute;
+					border-style: solid;
+					border-width: 7px 6px 0;
+					border-color: #fff transparent;
+					display: block;
+					width: 0;
+					z-index: 1;
+					margin-left: -6px;
+					bottom: -6px;
+					left: 50%;
 				}
 			}
-			&:after{
-				content: '';
-				position: absolute;
-				border-style: solid;
-				border-width: 7px 6px 0;
-				border-color: #fff transparent;
-				display: block;
-				width: 0;
-				z-index: 1;
-				margin-left: -6px;
-				bottom: -6px;
-				left: 50%;
-			}
-				}
 
 			
 		}

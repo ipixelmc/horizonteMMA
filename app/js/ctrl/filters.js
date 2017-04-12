@@ -9,6 +9,7 @@
     ctrl.model= {};
     var slider;
 
+
     var init = function(){
     	ctrl.disciplines = modelService.getDisciplines();
       ctrl.model = modelService.getFilters();
@@ -17,6 +18,7 @@
       ctrl.institutes = modelService.getInstitutes();
       ctrl.userPoint = mapService.getUserPoint();
       //ctrl.activeDistance = modelService.getActiveDistance();
+      ctrl.showDetailed = false;
     }
 
     ctrl.initSlider = function () {
@@ -63,6 +65,14 @@
 
     ctrl.places = {};
     ctrl.places.show =false;
+    ctrl.applyFilterPlace = false;
+
+    ctrl.getShowInstitutes = function(){
+      return _.filter(ctrl.institutes, 
+        function(o) { 
+          return o.showByDiscipline && o.showByLocation && o.showByDistance 
+        }).lenght;
+    }
 
     ctrl.searchPlaces = function () {
       if(ctrl.txtLocation != ""){
@@ -77,7 +87,9 @@
             ctrl.messageErrorSearch = "Ocurrió un error al búscar lugares cercanos";
           }
           )
+        ctrl.applyFilterPlace = true;
       }else{
+        ctrl.applyFilterPlace = false;
         ctrl.model.changeLocation = !ctrl.model.changeLocation;
         ctrl.places.show = false;
         _.forEach(ctrl.institutes, function(el) {
@@ -109,6 +121,7 @@
 
     ctrl.filterByLocation = function(){
       if(ctrl.locationSelected.formatted_address){
+        ctrl.txtLocation = ctrl.locationSelected.formatted_address;
         var boundsPoint = ctrl.locationSelected.geometry.bounds;
         var bounds = new google.maps.LatLngBounds(boundsPoint.southwest, boundsPoint.northeast);
 
@@ -138,6 +151,21 @@
      ctrl.filterByLocation();
      modelService.calculateDistance();
      ctrl.activateDistance();
+   }
+
+   ctrl.resetLocation = function(){
+    ctrl.txtLocation = '';
+    ctrl.searchPlaces();
+   }
+
+   ctrl.resetDistance = function(){
+    ctrl.activeDistance = false;
+    ctrl.activateDistance();
+   }
+
+   ctrl.resetDiscipline = function(){
+    ctrl.model.discipline = ctrl.disciplines[0];
+    ctrl.filterByDiscipline();
    }
 
    init();
