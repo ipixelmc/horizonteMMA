@@ -13,11 +13,21 @@ body{
 		}
     .icon{
         cursor: pointer;
+    position: absolute;
+    right: 41vw;
+    border: 1px solid $gray-lighter;
+    padding: 5px 17px;
+    top: 1vh;
+    &:hover{
+      background-color: $gray-lighter;
       }
+    }
 
 		.resume{
+      padding: 1vh 0 0 2vw;
 			&>div
 			{
+        display: -webkit-box;
         padding: 5px;
 				&>div{
 					border: 1px solid $gray-lighter;
@@ -31,30 +41,38 @@ body{
           }
           &:last-child{
             width: 10%;
+            text-align: center;
           }
 				}
 			}
 		}
 
 		.detailed{
-
+      padding: 1vh 0 0 2vw;
+      &>div{
+        &>div{
+          margin-bottom: 1.5vh;
+        }
+      }
 		}
 
+      .results{
+        span{
+          margin: 20px 10px;
+          color: $gray-darker;
+        }
+        &>div{
+          border: 1px solid $gray-lighter;
+          padding: 5px;
+          margin: 0 0 5px 20px;
+          cursor: pointer;
+          &:hover{
+            background-color: $gray-lighter;
+          }
+        }
+      }
 		.location{
-			.results{
-				label{
-					margin: 20px 10px;
-				}
-				&>div{
-					border: 1px solid $gray-dark;
-					padding: 5px;
-					margin: 0 0 5px 20px;
-					cursor: pointer;
-					&:hover{
-						background-color: $gray;
-					}
-				}
-			}
+
 		}
 	}
 
