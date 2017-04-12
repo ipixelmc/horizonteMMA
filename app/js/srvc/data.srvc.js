@@ -5,12 +5,12 @@
   .service('DataService', dataService);
   dataService.$inject = ['$http'];
   function dataService($http) {
-    var develoment = true;
+    var develoment = false;
     //urls
     var filtersUrl = {
-      discipline: develoment ? "/data/discipline.json" : "http://www.horizontemma.com/wp-json/wp/v2/disciplinas"
+      discipline: develoment ? "/data/discipline.json" : "http://www.horizontemma.com/?rest_route=/wp/v2/disciplinas"
     };
-    var instituteUrl = develoment ? "/data/institutes.json" : "http://www.horizontemma.com/wp-json/wp/v2/academias";
+    var instituteUrl = develoment ? "/data/institutes.json" : "http://www.horizontemma.com/?rest_route=/wp/v2/academias";
     var errorCallbackService = function (error) {
       console.log("Ha ocurrido un error en la petición");
       console.log(error);
