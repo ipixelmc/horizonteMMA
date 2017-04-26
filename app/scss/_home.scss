@@ -1,28 +1,33 @@
 body{
 	overflow-x : hidden;
 }
+.fluid-container {
+	margin: 0 20px;
+}
 .search-section{
 	background-color: $body-bg;
 	color: $text-color;
 	display: inline;
 	section.filters{
-		width: 59vw;
+		width: 60vw;
 		padding: 1em 1.3em;
+		position: absolute;
+		z-index: 2;
+		background-color: #fff;
 		.slider.slider-horizontal{
 			width: 100%;
 		}
     .icon{
-        cursor: pointer;
-    position: absolute;
-    right: 41vw;
-    border: 1px solid $gray-lighter;
-    padding: 5px 17px;
-    top: 1vh;
-    &:hover{
-      background-color: $gray-lighter;
+      cursor: pointer;
+	    position: absolute;
+	    right: 0;
+	    border: 1px solid $gray-lighter;
+	    padding: 5px 17px;
+	    top: 1vh;
+	    &:hover{
+	      background-color: $gray-lighter;
       }
     }
-
 		.resume{
       padding: 1vh 0 0 2vw;
 			&>div
@@ -75,11 +80,11 @@ body{
 
 		}
 	}
-
 	section.list{
 		.carousel{
 			width: 402px;
 			height: 298px;
+			max-width: 100%;
 		}
 		.rn-carousel-controls{
 			.rn-carousel-control-next{
@@ -105,19 +110,25 @@ body{
 			max-width: 402px;
 			margin: auto;
 		}
-		@include respond-to(desktop) { 
-			width: 59vw;
+		@include respond-to(tablet-port) { 
+			width: 60vw;
 			float: left;
 			//max-height: 100vh;
 			overflow-y: auto;
 			overflow-x: hidden;
+
+			height: 100vh;
+			padding-top: 150px;
+			overflow: hidden;
+			overflow-y: scroll;
+
 		}
 	}
 	section.map{
 		position: absolute;
 		right: 0;
 		top: 0;
-		@include respond-to(desktop) { 
+		@include respond-to(tablet-port) { 
 			width: 40vw;
 			float: right;
 		}
@@ -152,7 +163,6 @@ body{
 					color: $gray-lighter;
 					&:after{
 						border-color: $brand-primary transparent;
-
 					}
 				}
 				&:after{

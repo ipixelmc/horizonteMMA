@@ -1,15 +1,15 @@
-<div ng-controller="ListController as ctrl">
+<div class="fluid-container" ng-controller="ListController as ctrl">
   <div class="row">
-    <div class="col-md-6 content animated fadeIn" ng-repeat ="ins in ctrl.institutes" ng-if="ins.showByDiscipline && ins.showByLocation && ins.showByDistance" ng-mouseover="ctrl.changeHover($index);">
-     <div>
-    <ul rn-carousel class="carousel" rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-transition="fadeAndSlide">
-      <li ng-repeat="image in ins.images track by $index">
-        <img ng-src="{{image}}"/>
+    <div class="col-sm-6 content animated fadeIn" ng-repeat ="ins in ctrl.institutes" ng-if="ins.showByDiscipline && ins.showByLocation && ins.showByDistance" ng-mouseover="ctrl.changeHover($index);">
+      <div>
+        <ul rn-carousel class="carousel" rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-transition="fadeAndSlide">
+          <li ng-repeat="image in ins.images track by $index">
+            <img ng-src="{{image}}"/>
 
-      </li>
-    </ul>
-    <div class="description">
-     <h5>{{ins.name}}</h5>
+          </li>
+        </ul>
+      <div class="description">
+      <h5>{{ins.name}}</h5>
     <!-- <span>showByDiscpline :  {{ins.showByDiscipline}}</span><br/>
      <span>showByLocation :  {{ins.showByLocation}}</span><br/>
      <span>showByDistance :  {{ins.showByDistance}}</span><br/>-->

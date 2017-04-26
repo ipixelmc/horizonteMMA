@@ -6,7 +6,7 @@
     @media only screen and (max-width: $tablet-land) { @content; }
   }
    @else if $media == tablet-port {
-    @media only screen and (max-width: $tablet-port) { @content; }
+    @media only screen and (min-width: $tablet-port) { @content; }
   }
    @else if $media == mobile-land {
     @media only screen and (max-width: $mobile-land) { @content; }
