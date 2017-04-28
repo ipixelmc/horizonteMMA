@@ -1,80 +1,76 @@
 <div ng-controller="FiltersController as ctrl">
-	<div class="row resume animated " ng-show="!ctrl.showDetailed" ng-class="ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
-   <p> Mostrando {{ctrl.getShowInstitutes()}} escuelas </p>
-   <i class="fa fa-pencil icon animated fadeIn" aria-hidden="true"  ng-click="ctrl.showDetailed = true" ng-if="!ctrl.showDetailed"></i>
-   <div class="col-md-6">
-    <div ng-click="ctrl.showDetailed = true">
-      <span ng-if="!ctrl.applyFilterPlace">Toda la Republica Méxicana</span>
-      <span ng-if="ctrl.applyFilterPlace">{{ctrl.txtLocation}}</span>
-    </div>
-    <div ng-click="ctrl.resetLocation();">
-      <i class="fa fa-times" aria-hidden="true"></i>
+  <div class="fluid-container">
+  	<div class="row resume animated " ng-show="!ctrl.showDetailed" ng-class="ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
+      <p> Mostrando {{ctrl.getShowInstitutes()}} escuelas </p>
+      <i class="fa fa-pencil icon animated fadeIn" aria-hidden="true" ng-click="ctrl.showDetailed = true" ng-if="!ctrl.showDetailed"></i>
+      <div class="col-md-6">
+        <div ng-click="ctrl.showDetailed = true">
+          <span ng-if="!ctrl.applyFilterPlace">Toda la Republica Méxicana</span>
+          <span ng-if="ctrl.applyFilterPlace">{{ctrl.txtLocation}}</span>
+        </div>
+        <div ng-click="ctrl.resetLocation();">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div ng-click="ctrl.showDetailed = true">
+          <span ng-if="!ctrl.model.activeDistance">sin restricción de distancia</span>
+          <span ng-if="ctrl.model.activeDistance">hasta {{ctrl.model.distance}} km</span>
+        </div>
+        <div ng-click="ctrl.resetDistance();">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="col-md-6" >
+        <div ng-click="ctrl.showDetailed = true">
+          <span>{{ctrl.model.discipline.name}}</span>
+        </div>
+        <div ng-click="ctrl.resetDiscipline();">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div ng-click="ctrl.showDetailed = true">
-      <span ng-if="!ctrl.model.activeDistance">sin restricción de distancia</span>
-      <span ng-if="ctrl.model.activeDistance">hasta {{ctrl.model.distance}} km</span>
+
+  <div  class="detailed animated " ng-show="ctrl.showDetailed == true" ng-class="!ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
+    <i ng-click="ctrl.showDetailed = false" ng-if="ctrl.showDetailed" class="animated fadeIn icon fa fa-times"></i>
+    
+    <div class="row">
+      <div class="col-md-11">
+       <span>Disciplina:</span> 
+       <select ng-options="item as item.name for item in ctrl.disciplines track by item.id" ng-model="ctrl.model.discipline" class="form-control" ng-change="ctrl.filterByDiscipline();"></select>
+     </div>
     </div>
-    <div ng-click="ctrl.resetDistance();">
-      <i class="fa fa-times" aria-hidden="true"></i>
+    <div class="row">
+      <div class="col-md-6 location">
+        <span>Ubicaci&oacute;n:</span>
+        <form ng-submit="searchPlaces();">
+         <div class="input-group col-md-12">
+          <input type="text" class="form-control" placeholder="Buscar..." ng-model="ctrl.txtLocation">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" 
+            ng-click="ctrl.searchPlaces();"><i class="fa fa-search"></i></button>
+          </span> 
+        </div>
+      </form>
+    </div>
+    <div class="col-md-5"  ng-if="ctrl.distanceRange.status">
+     <span>
+      <input type="checkbox" ng-change="ctrl.activateDistance();" ng-model="ctrl.activeDistance" name="" class=""> Cercanía (km):
+    </span>
+    <div ng-if="ctrl.activeDistance == true " class="animated fadeIn" >
+     <rzslider
+     rz-slider-model="ctrl.distance"
+     rz-slider-options="ctrl.sliderOptions"></rzslider>
     </div>
   </div>
-  <div class="col-md-6" >
-
-    <div ng-click="ctrl.showDetailed = true">
-      <span>{{ctrl.model.discipline.name}}</span>
-    </div>
-    <div ng-click="ctrl.resetDiscipline();">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </div>
-
   </div>
-
-</div>
-<div  class="detailed animated " ng-show="ctrl.showDetailed == true" ng-class="!ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
- <i ng-click="ctrl.showDetailed = false" ng-if="ctrl.showDetailed"
- class="animated fadeIn icon fa fa-times">
-</i>
-<div class="row">
-  <div class="col-md-11">
-   <span>Disciplina:</span> 
-   <select ng-options="item as item.name for item in ctrl.disciplines track by item.id" ng-model="ctrl.model.discipline" class="form-control" ng-change="ctrl.filterByDiscipline();"></select>
- </div>
-</div>
-<div class="row">
-  <div class="col-md-6 location">
-    <span>Ubicaci&oacute;n:</span>
-    <form ng-submit="searchPlaces();">
-     <div class="input-group col-md-12">
-      <input type="text" class="form-control" placeholder="Buscar..." ng-model="ctrl.txtLocation">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit" 
-        ng-click="ctrl.searchPlaces();"><i class="fa fa-search"></i></button>
-      </span> 
+    <div class="row results" ng-show="ctrl.places.show" >
+      <span>Selecciona</span><br/>
+      <div class="col-md-6" ng-repeat="place in ctrl.places.list" ng-click="ctrl.setPlace(place);">
+       {{place.formatted_address}}
+      </div>
     </div>
-  </form>
-</div>
-<div class="col-md-5"  ng-if="ctrl.distanceRange.status">
- <span>
-  <input type="checkbox" ng-change="ctrl.activateDistance();" ng-model="ctrl.activeDistance" name="" class=""> Cercanía (km):
-</span>
-<div ng-if="ctrl.activeDistance == true " class="animated fadeIn" >
- <rzslider
- rz-slider-model="ctrl.distance"
- rz-slider-options="ctrl.sliderOptions"></rzslider>
-</div>
-
-
-</div>
-</div>
-<div class="row results" ng-show="ctrl.places.show" >
-    <span>Selecciona</span><br/>
-  
-  <div class="col-md-6" ng-repeat="place in ctrl.places.list" ng-click="ctrl.setPlace(place);">
-   {{place.formatted_address}}
- </div>
-</div>
-</div>
+  </div>
 </div>
 

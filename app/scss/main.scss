@@ -1,6 +1,9 @@
-@import "font-awesome4.7.0/font-awesome";
-@import "variables";
-@import "mixin";
-@import "fonts";
-@import "home";
+// @import "susy";
+@import 'font-awesome4.7.0/font-awesome';
+@import 'variables';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'mixin';
+@import 'ionicons/ionicons';
+@import 'fonts';
+@import 'home';
 
