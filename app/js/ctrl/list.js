@@ -3,8 +3,8 @@
   'use strict';
   angular.module('horizonteMMAModule')
   .controller('ListController', listController);
-  listController.$inject = ['ModelService'];
-  function listController(modelService) {
+  listController.$inject = ['ModelService', 'tokilometersFilter'];
+  function listController(modelService, tokilometersFilter) {
     var ctrl = this;
     ctrl.hoverNew = 0;
    	var init = function(){
@@ -24,3 +24,4 @@
     }
 
   })();
+
