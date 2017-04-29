@@ -6,11 +6,11 @@
   dataService.$inject = ['$http'];
   function dataService($http) {
     var develoment = false;
-    //urls
+    // urls
     // var filtersUrl = {
-    //   discipline: develoment ? "/data/discipline.json" : "http://www.horizontemma.com/?rest_route=/wp/v2/disciplinas"
+    //   discipline: develoment ? "/data/discipline.json" : "/wp-json/wp/v2/disciplinas"
     // };
-    // var instituteUrl = develoment ? "/data/institutes.json" : "http://www.horizontemma.com/?rest_route=/wp/v2/academias";
+    // var instituteUrl = develoment ? "/data/institutes.json" : "/wp-json/wp/v2/academias";
 
     var filtersUrl = {
       discipline: develoment ? "/data/discipline.json" : "http://localhost:8888/hmma/?rest_route=/wp/v2/disciplinas"

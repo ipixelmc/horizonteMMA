@@ -49,18 +49,29 @@ gulp.task('compass', function() {
  * Tarea que genera la compilación de scss y crea el archivo para distribucion 
  */
 
-gulp.task('scssDist', function() {
-  gulp.src(paths.app +  'scss/main.{scss,sass}')
-  .pipe($.sourcemaps.init())
-  .pipe($.sass({
-    errLogToConsole: true
-  }))
-  .pipe($.sourcemaps.write())
-  .pipe($.cssmin())
-  .pipe($.rename({suffix: '.min'}))
-  .pipe(gulp.dest(paths.cssDist));
-});
+// gulp.task('scssDist', function() {
+//   gulp.src(paths.app +  'scss/main.{scss,sass}')
+//   .pipe($.sourcemaps.init())
+//   .pipe($.sass({
+//     errLogToConsole: true
+//   }))
+//   .pipe($.sourcemaps.write())
+//   .pipe($.cssmin())
+//   .pipe($.rename({suffix: '.min'}))
+//   .pipe(gulp.dest(paths.cssDist));
+// });
 
+
+gulp.task('scssDist', function() {
+  return gulp.src(paths.app + 'scss/main.scss')
+  .pipe($.compass({
+    sass: paths.app + 'scss/',
+    css: paths.cssDist + 'css/',
+    style : 'expanded',
+    comments : 'false',
+    debug: 'false'
+  }))
+});
 
 
 /**
