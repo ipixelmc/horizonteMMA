@@ -2,25 +2,7 @@
 	<div class="row resume animated " ng-show="!ctrl.showDetailed" ng-class="ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
    <p> Mostrando {{ctrl.getShowInstitutes()}} escuelas </p>
    <i class="fa fa-pencil icon animated fadeIn" aria-hidden="true"  ng-click="ctrl.showDetailed = true" ng-if="!ctrl.showDetailed"></i>
-   <div class="col-md-6">
-    <div ng-click="ctrl.showDetailed = true">
-      <span ng-if="!ctrl.applyFilterPlace">Toda la Republica Méxicana</span>
-      <span ng-if="ctrl.applyFilterPlace">{{ctrl.txtLocation}}</span>
-    </div>
-    <div ng-click="ctrl.resetLocation();">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div ng-click="ctrl.showDetailed = true">
-      <span ng-if="!ctrl.model.activeDistance">sin restricción de distancia</span>
-      <span ng-if="ctrl.model.activeDistance">hasta {{ctrl.model.distance}} km</span>
-    </div>
-    <div ng-click="ctrl.resetDistance();">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </div>
-  </div>
-  <div class="col-md-6" >
+     <div class="col-md-6" >
 
     <div ng-click="ctrl.showDetailed = true">
       <span>{{ctrl.model.discipline.name}}</span>
@@ -30,7 +12,25 @@
     </div>
 
   </div>
+  <div class="col-md-5">
+    <div ng-click="ctrl.showDetailed = true">
+      <span ng-if="!ctrl.model.activeDistance">sin restricción de distancia</span>
+      <span ng-if="ctrl.model.activeDistance">hasta {{ctrl.model.distance}} km</span>
+    </div>
+    <div ng-click="ctrl.resetDistance();">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+  </div>
 
+<div class="col-md-6">
+    <div ng-click="ctrl.showDetailed = true">
+      <span ng-if="!ctrl.applyFilterPlace">Toda la Republica Méxicana</span>
+      <span ng-if="ctrl.applyFilterPlace">{{ctrl.txtLocation}}</span>
+    </div>
+    <div ng-click="ctrl.resetLocation();">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+  </div>
 </div>
 <div  class="detailed animated " ng-show="ctrl.showDetailed == true" ng-class="!ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
  <i ng-click="ctrl.showDetailed = false" ng-if="ctrl.showDetailed"
