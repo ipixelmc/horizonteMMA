@@ -4,13 +4,15 @@
 
 //-- Colors
 //----------------------------------------------------
+$color-main:						 #C91C10;
+$gray:									 #EEEEEE;
+$gray-light:             #AAAAAA;
+$gray-lighter:           #EEEEEE;
+
 $gray-darker:            #3f4040;
 $gray-dark:              #797979;
-$gray:                   #e1e4e6;
-$gray-light:             #e7ecee;
-$gray-lighter:           #f7f7f7;
 
-$brand-default: 		#8e8e93;
+$brand-default: 				#8e8e93;
 $brand-primary:         #c91c10;
 $brand-success:         #05e720;
 $brand-info:            #64b1ff;
@@ -36,11 +38,11 @@ $iconColor: 	$brand-primary;
 //== Typography
 //----------------------------------------------------------------
 
-$font-family-sans-serif:  'Open Sans', Helvetica, Arial, sans-serif;
+$font-family-sans-serif: 'Titillium', Helvetica, Arial, sans-serif;
 
-$font-size-base:          				1em;
-$font-size-large:         				1.125em;
-$font-size-small:         				0.875em;
+$font-size-base:          				15px;
+$font-size-large:         				24px;
+$font-size-small:         				12px;
 
 $font-size-h1:            				($font-size-base * 3); 
 $font-size-h2:            				($font-size-base * 2.25);
@@ -88,7 +90,19 @@ $btn-danger-bg:                  $brand-danger;
 
 
 $desktop:   	1200px;
-$tablet-land:   991px;
-$tablet-port:   768px;
+$tablet-land: 991px;
+$tablet-port: 768px;
 $mobile-land:	480px;
 $mobile-port:	360px;
+
+
+/*===========================================
+=            OVERWRITE BOOTSTRAP            =
+===========================================*/
+
+$headings-font-weight:    800;
+
+
+$grid-gutter-width: 			20px;
+
+/*=====  End of OVERWRITE BOOTSTRAP  ======*/

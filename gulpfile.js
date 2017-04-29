@@ -14,6 +14,9 @@ $.gulpIf = require('gulp-if');
 $.runSequence = require('run-sequence');
 $.imagemin = require('gulp-imagemin');
 $.browserSync = require('browser-sync');
+$.compass = require('gulp-compass');
+
+
 
 /**
  * Observa cambios en archivos html, js y scss
@@ -21,26 +24,31 @@ $.browserSync = require('browser-sync');
 
 gulp.task('watchApp', function(){
   // // Reload to Web App
-  gulp.watch(paths.app+'/**/*.scss',['sass']).on('change',$.reload);
-   gulp.watch(paths.app+'/**/*.js').on('change',$.reload);
+  // gulp.watch(paths.app+'/**/*.scss',['sass']).on('change',$.reload);
+  gulp.watch(paths.app+'/**/*.js').on('change',$.reload);
 });
 
 
 /**
- * Tarea que genera compilación de css
+ * Tarea que genera compilación de css con Compass
  */
-gulp.task('sass', function() {
-  return gulp.src(paths.app + 'scss/main.scss')
-  .pipe($.sass())
-  .pipe(gulp.dest(paths.app + 'css'))
-  .pipe($.notify("Actualización de css OK"));
 
+gulp.task('compass', function() {
+  return gulp.src(paths.app + 'scss/*.scss')
+  .pipe($.compass({
+    sass: paths.app + 'scss/',
+    css: paths.app + 'css/',
+    style : 'expanded',
+    comments : 'true',
+    debug: 'true'
+  }))
+  .pipe($.notify({message: 'Estilos completos'}));
 });
-
 
 /**
  * Tarea que genera la compilación de scss y crea el archivo para distribucion 
  */
+
 gulp.task('scssDist', function() {
   gulp.src(paths.app +  'scss/main.{scss,sass}')
   .pipe($.sourcemaps.init())
@@ -67,7 +75,6 @@ gulp.task('jsDist', function() {
     .pipe(gulp.dest(paths.dist + 'js' ))
     .pipe($.notify("Actualización de JS OK"));;
 });
-
 
 gulp.task('useref', function(){
   return gulp.src(paths.app + 'index.html')
@@ -105,23 +112,30 @@ gulp.task('clean:dist', function() {
 })
 
 gulp.task('dist', function (callback) {
-  $.runSequence('clean:dist', 'sass', 'views',
+  $.runSequence('clean:dist', 'compass', 'views',
     ['useref', 'images', 'fonts','models'],
     callback
   )
     console.log('Building files');
 })
 
-gulp.task('serve', ['sass','watchApp'], function() {
+gulp.task('browser-sync', function() {
     $.browserSync({
-    server: {
-    baseDir: './app',
-    routes:  {
-        '/bower_components': 'bower_components'
-    }
-}
-        });
+      server: {
+        baseDir: './app',
+        routes:  {
+          '/bower_components': 'bower_components'
+        }
+      }
     });
+});
+
+
+gulp.task('serve', ['compass', 'browser-sync'], function () {
+  gulp.watch(paths.app + "scss/**/*.scss", ['compass']);
+});
+
+
 gulp.task('test-dist', ['dist'], function() {
     $.browserSync({
         server: {

@@ -32,6 +32,7 @@
     "url": "^0.11.0"
   },
   "dependencies": {
+    "browser-sync": "^2.18.8",
     "gulp-install": "^0.6.0",
     "lodash": "^4.17.4"
   }

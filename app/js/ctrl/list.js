@@ -3,14 +3,16 @@
   'use strict';
   angular.module('horizonteMMAModule')
   .controller('ListController', listController);
-  listController.$inject = ['ModelService'];
-  function listController(modelService) {
+  listController.$inject = ['ModelService', 'tokilometersFilter'];
+  function listController(modelService, tokilometersFilter) {
     var ctrl = this;
     ctrl.hoverNew = 0;
-   	var init = function(){
-   		 ctrl.institutes = modelService.getInstitutes();
-       ctrl.filters = modelService.getFilters();
-   	}
+    ctrl.tamMax = 5;
+    ctrl.showButtonMore = true;
+    var init = function(){
+      ctrl.institutes = modelService.getInstitutes();
+      ctrl.filters = modelService.getFilters();
+    }
 
     ctrl.changeHover = function(index){
       ctrl.hoverOld = ctrl.hoverNew;
@@ -19,8 +21,23 @@
       ctrl.institutes[ctrl.hoverNew].inHover = true;
     }
 
-   	init();
 
+    ctrl.showMoreFn = function(){
+      ctrl.tamMax += 5;
+      ctrl.showButtonMore = ctrl.tamMax<ctrl.institutes.length;
     }
 
-  })();
+    ctrl.listFilterFn = function(ins,index){
+      var showByFilters = ins.showByDiscipline && ins.showByLocation && ins.showByDistance;
+      if(showByFilters && index <ctrl.tamMax){
+        return true;
+      }
+      return false;
+    }
+
+    init();
+
+  }
+
+})();
+

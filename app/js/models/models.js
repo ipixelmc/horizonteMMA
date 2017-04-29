@@ -1,4 +1,5 @@
 function Institute(obj) {
+	console.log(obj);
 	this.id = obj.id ? obj.id:null;
 	this.name= obj.name ? obj.name: "";
 	this.disciplines = obj.disciplines ? obj.disciplines : [];
@@ -11,6 +12,7 @@ function Institute(obj) {
 	this.show = true;
 	this.phone = obj.phone ? obj.phone : "";
 	this.webPage = obj.webPage ? obj.webPage : "";
+	this.logo = obj.logo;
 	this.show=true;
 	this.distance = obj.distance ? obj.distance : 0;
 	this.showByDiscipline = true;
