@@ -40,6 +40,11 @@
     }
 
     var setPoint = function(point){
+      NgMap.getMap().then(function(map) {
+        var latlng = new google.maps.LatLng(point.lat, point.lng);
+        map.setCenter(latlng);
+        map.setZoom(11);
+      });
       mapService.setOriginPoint(point);
       mapService.setUserPoint(point);  
       modelService.calculateDistance();

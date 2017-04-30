@@ -21,6 +21,10 @@
       ctrl.institutes[ctrl.hoverNew].inHover = true;
     }
 
+    ctrl.resetScroll = function(){
+      ctrl.tamMax = 5;
+      ctrl.showButtonMore = ctrl.tamMax<ctrl.institutes.length;
+    }
 
     ctrl.showMoreFn = function(){
       ctrl.tamMax += 5;

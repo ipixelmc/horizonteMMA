@@ -5,7 +5,7 @@
   .service('DataService', dataService);
   dataService.$inject = ['$http'];
   function dataService($http) {
-    var develoment = false;
+    var develoment = true;
     // urls
     // var filtersUrl = {
     //   discipline: develoment ? "/data/discipline.json" : "/wp-json/wp/v2/disciplinas"
@@ -22,7 +22,6 @@
       console.log(error);
     }
     var getData = function (request) {
-
       $http({
         method: 'GET',
         url: request.url
