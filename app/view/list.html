@@ -1,6 +1,7 @@
 <div class="fluid-container" ng-controller="ListController as ctrl">
   <div class="row">
     <div class="col-sm-6 content animated fadeIn" ng-repeat ="ins in ctrl.institutes | filter : ctrl.listFilterFn" ng-mouseover="ctrl.changeHover($index);">
+    
       <div class="image-container">
         <ul rn-carousel class="carousel" rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-transition="fadeAndSlide">
           <li ng-repeat="image in ins.images track by $index">
@@ -10,6 +11,7 @@
         <img class="image-container-logo" ng-src="{{ins.logo}}">
         <span class="distance">{{ ins.distance | tokilometers }}</span>
       </div>
+
       <div class="description">
         <p class="name">{{ins.name}}</p>
         <!-- IKSELITA te agregé un bonito filtroooooo -->
@@ -23,7 +25,7 @@
       </div>
     </div> 
     <div class="col-md-6 col-md-offset-3" ng-if="ctrl.showButtonMore">
-      <button class="btn btn-default btn-block" ng-click="ctrl.showMoreFn();">Ver más</button>
+      <button class="btn btn-outline btn-block" ng-click="ctrl.showMoreFn();">CARGAR MÁS ACADÉMIAS</button>
     </div>
   </div>
 </div>

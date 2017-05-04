@@ -30,7 +30,7 @@
       Math.sin(Δλ/2) * Math.sin(Δλ/2);
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-      var d = Math.ceil(R * c );
+      var d = Math.ceil(R * c ); //aqui comvertir a 1000 
       if(point.innerRange){
         distanceRange.max = d>distanceRange.max ? d: distanceRange.max;
         distanceRange.min = distanceRange.min==0 || d<distanceRange.min ? d: distanceRange.min;

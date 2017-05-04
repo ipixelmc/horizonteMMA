@@ -1,0 +1,28 @@
+@mixin button-variant-custom($color, $background, $border, $color-hover, $background-hover, $border-hover) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+	font-weight: 600;
+	@include transition(color .1s, background-color .1s);
+  &:focus,
+  &.focus {
+    color: $color-hover;
+    background-color: $background-hover;
+        border-color: $border-hover;
+  }
+  &:hover {
+    color: $color-hover;
+    background-color: $background-hover;
+        border-color: $border-hover;
+  }
+  &:active,
+  &.active {
+    color: $color-hover;
+    background-color: $background-hover;
+        border-color: $border-hover;
+  }
+}
+
+.btn-outline {
+	@include button-variant-custom(#484848, #fff, #484848, #fff, $color-main, $color-main);
+}
