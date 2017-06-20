@@ -1,9 +1,9 @@
 {
-  "name": "HorizoneMMA",
+  "name": "horizonemma",
   "version": "0.0.1",
   "main": [
-    "dist/css/main.min.css",
-    "dist/js/main.min.js"
+    "dist/css/main.css",
+    "dist/js/main.js"
   ],
   "description": "Buscador mapa",
   "license": "MIT",

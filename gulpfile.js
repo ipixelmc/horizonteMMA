@@ -3,7 +3,6 @@ var gulp = require('gulp'),
 paths =  require('./gulp.config.json'),
 gulpLoadPlugins = require('gulp-load-plugins'),
 $ = gulpLoadPlugins();
-$.browserSync = require('browser-sync');
 $.reload = require('browser-sync').reload;
 $.useref = require('gulp-useref');
 $.concat = require('gulp-concat');
@@ -15,6 +14,8 @@ $.runSequence = require('run-sequence');
 $.imagemin = require('gulp-imagemin');
 $.browserSync = require('browser-sync');
 $.compass = require('gulp-compass');
+$.minifyCss = require('gulp-minify-css');
+
 
 
 
@@ -33,6 +34,33 @@ gulp.task('watchApp', function(){
  * Tarea que genera compilación de css con Compass
  */
 
+gulp.task('compassDist', function() {
+  return gulp.src(paths.app + 'scss/*.scss')
+  .pipe($.compass({
+    config_file: 'config.rb',
+    sass: paths.app + 'scss/',
+    css: paths.dist + 'css/',
+  }))
+  // .pipe($.minifyCss({
+  //   keepSpecialComments: 0
+  // }))
+  .pipe($.notify({message: 'Estilos completos'}));
+});
+
+// gulp.task('compass', function() {
+//   return gulp.src(paths.app + 'scss/*.scss')
+//   .pipe($.compass({
+//     config_file: 'config.rb',
+//     sass: paths.app + 'scss/',
+//     css: paths.app + 'css/',
+//   }))
+//   // .pipe($.minifyCss({
+//   //   keepSpecialComments: 0
+//   // }))
+//   .pipe($.notify({message: 'Estilos completos'}));
+// });
+
+
 gulp.task('compass', function() {
   return gulp.src(paths.app + 'scss/*.scss')
   .pipe($.compass({
@@ -45,33 +73,34 @@ gulp.task('compass', function() {
   .pipe($.notify({message: 'Estilos completos'}));
 });
 
+
 /**
  * Tarea que genera la compilación de scss y crea el archivo para distribucion 
  */
 
-// gulp.task('scssDist', function() {
-//   gulp.src(paths.app +  'scss/main.{scss,sass}')
-//   .pipe($.sourcemaps.init())
-//   .pipe($.sass({
-//     errLogToConsole: true
-//   }))
-//   .pipe($.sourcemaps.write())
-//   .pipe($.cssmin())
-//   .pipe($.rename({suffix: '.min'}))
-//   .pipe(gulp.dest(paths.cssDist));
-// });
-
-
 gulp.task('scssDist', function() {
-  return gulp.src(paths.app + 'scss/main.scss')
-  .pipe($.compass({
-    sass: paths.app + 'scss/',
-    css: paths.cssDist + 'css/',
-    style : 'expanded',
-    comments : 'false',
-    debug: 'false'
-  }))
+  gulp.src(paths.app +  'scss/main.{scss,sass}')
+  .pipe($.sourcemaps.init())
+  // .pipe($.sass({
+  //   errLogToConsole: true
+  // }))
+  .pipe($.sourcemaps.write())
+  .pipe($.cssmin())
+  .pipe($.rename({suffix: '.min'}))
+  .pipe(gulp.dest(paths.cssDist));
 });
+
+
+// gulp.task('scssDist', function() {
+//   return gulp.src(paths.app + 'scss/main.scss')
+//   .pipe($.compass({
+//     sass: paths.app + 'scss/',
+//     css: paths.cssDist + 'css/',
+//     style : 'expanded',
+//     comments : 'false',
+//     debug: 'false'
+//   }))
+// });
 
 
 /**
@@ -84,7 +113,7 @@ gulp.task('jsDist', function() {
     .pipe($.rename({suffix: '.min'}))
     .pipe($.uglify({compress: true}))
     .pipe(gulp.dest(paths.dist + 'js' ))
-    .pipe($.notify("Actualización de JS OK"));;
+    .pipe($.notify("Actualización de JS OK"));
 });
 
 gulp.task('useref', function(){
@@ -123,11 +152,10 @@ gulp.task('clean:dist', function() {
 })
 
 gulp.task('dist', function (callback) {
-  $.runSequence('clean:dist', 'compass', 'views',
+  $.runSequence('clean:dist', 'compassDist', 'views',
     ['useref', 'images', 'fonts','models'],
     callback
   )
-    console.log('Building files');
 })
 
 gulp.task('browser-sync', function() {
@@ -135,7 +163,7 @@ gulp.task('browser-sync', function() {
       server: {
         baseDir: './app',
         routes:  {
-          '/bower_components': 'bower_components'
+          '/bower_components': '/bower_components'
         }
       }
     });
@@ -143,7 +171,7 @@ gulp.task('browser-sync', function() {
 
 
 gulp.task('serve', ['compass', 'browser-sync'], function () {
-  gulp.watch(paths.app + "scss/**/*.scss", ['compass']);
+  // gulp.watch(paths.app + "scss/**/*.scss", ['compass']);
 });
 
 

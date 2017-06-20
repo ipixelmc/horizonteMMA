@@ -1,9 +1,4 @@
-//
-// Variables
-// ---------------------------------------------------
 
-//-- Colors
-//----------------------------------------------------
 $color-main:						 #C91C10;
 $gray:									 #EEEEEE;
 $gray-light:             #AAAAAA;
@@ -19,24 +14,16 @@ $brand-info:            #64b1ff;
 $brand-warning:         #e75e05;
 $brand-danger:          #d54438;
 
-//-- Scaffolding 
-//## Background color and global text-color on <body>
 $body-bg:               #fff;
 $text-color:            #3a3a3a;
 $gray-text: 			#b2b2b2; 
 
-//-- Global textual link color
-//------------------------------------------------
 $link-color:            $brand-primary;
 $link-hover-color:      darken($link-color, 10%);
 
-//-- Icons Primary color
-//------------------------------------------------
 $iconColor: 	$brand-primary;
 
 
-//== Typography
-//----------------------------------------------------------------
 
 $font-family-sans-serif: 'Titillium', Helvetica, Arial, sans-serif;
 
@@ -57,15 +44,9 @@ $headings-line-height-smaller:    1.5;
 $headings-color:          				inherit;
 
 
-//-- Border color (Deviders, Element Borders, etc.)
-//----------------------------------------------------------------
 $gray-border:						#cecece; 
 
 
-//-- Buttons
-
-//## Normal Buttons
-//------------------------------------------------
 $btn-font-size:                	 $font-size-small;
 $btn-font-weight:                300;
 
@@ -96,9 +77,6 @@ $mobile-land:	480px;
 $mobile-port:	360px;
 
 
-/*===========================================
-=            OVERWRITE BOOTSTRAP            =
-===========================================*/
 
 $headings-font-weight:    800;
 
@@ -110,4 +88,3 @@ $border-radius-base:      0;
 $border-radius-large:     0;
 $border-radius-small:     0;
 
-/*=====  End of OVERWRITE BOOTSTRAP  ======*/

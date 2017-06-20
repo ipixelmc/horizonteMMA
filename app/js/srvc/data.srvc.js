@@ -5,17 +5,19 @@
   .service('DataService', dataService);
   dataService.$inject = ['$http'];
   function dataService($http) {
-    var develoment = false;
-    // urls
-    // var filtersUrl = {
-    //   discipline: develoment ? "/data/discipline.json" : "/wp-json/wp/v2/disciplinas"
-    // };
-    // var instituteUrl = develoment ? "/data/institutes.json" : "/wp-json/wp/v2/academias";
-
+    var prod = false;
+    
     var filtersUrl = {
-      discipline: develoment ? "/data/discipline.json" : "http://localhost:8888/hmma/wp-json/wp/v2/disciplinas"
+      discipline: 
+        prod ? 
+        '/wp-content/themes/gloria-child/map/json/disciplinas.json' : 
+        'http://localhost:8888/hm/wp-content/themes/gloria-child/map/json/disciplinas.json'
     };
-    var instituteUrl = develoment ? "/data/institutes.json" : "http://localhost:8888/hmma/wp-json/wp/v2/academias";
+    
+    var instituteUrl = 
+          prod ? 
+          "/wp-content/themes/gloria-child/map/json/academias" : 
+          "http://localhost:8888/hm/wp-content/themes/gloria-child/map/json/academias.json";
     
     var errorCallbackService = function (error) {
       console.log("Ha ocurrido un error en la petición");
@@ -24,8 +26,12 @@
     var getData = function (request) {
       $http({
         method: 'GET',
-        url: request.url
+        url: request.url,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }).then(function successCallback(response) {
+        console.log(response);
           request.model(response.data);
       }, function errorCallback(response) {
        errorCallbackService(response);
