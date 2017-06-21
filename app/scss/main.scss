@@ -1,9 +1,15 @@
+@import 'http://localhost:8888/hm/wp-content/themes/gloria/framework/bootstrap/css/bootstrap.css';
+
 @import 'variables';
-@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+// @import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'base';
 @import 'mixin';
 @import 'compass';
 @import 'ionicons/ionicons';
 @import 'fonts';
 @import 'buttons';
+@import 'item';
+@import 'list';
+@import 'map';
 @import 'home';
 

@@ -1,11 +1,16 @@
 
-$color-main:						 #C91C10;
-$gray:									 #EEEEEE;
-$gray-light:             #AAAAAA;
-$gray-lighter:           #EEEEEE;
 
-$gray-darker:            #3f4040;
-$gray-dark:              #797979;
+
+
+$color-main:						#C91C10;
+$gray:									#EEEEEE;
+$gray-light:            #AAAAAA;
+$gray-lighter:          #EEEEEE;
+
+$gray-darker:           #222222;
+$gray-dark:             #797979;
+
+$gray-text: 						#484848;
 
 $brand-default: 				#8e8e93;
 $brand-primary:         #c91c10;
@@ -16,7 +21,7 @@ $brand-danger:          #d54438;
 
 $body-bg:               #fff;
 $text-color:            #3a3a3a;
-$gray-text: 			#b2b2b2; 
+// $gray-text: 						#b2b2b2; 
 
 $link-color:            $brand-primary;
 $link-hover-color:      darken($link-color, 10%);

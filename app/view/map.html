@@ -1,12 +1,25 @@
 <div class="info-box" ng-controller="MapController as ctrl">
 
-	<button class="btn set-position" ng-click="ctrl.setUserPotition()">UBICAR MI POSICIÓN</button>
+	<button class="btn set-position" ng-click="ctrl.setUserPotition()">
+		<svg version="1.1" class="icon-locate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		<g>
+			<circle class="icon-locate-fill" cx="256" cy="256" r="96"/>
+			<path class="icon-locate-fill" d="M512,240h-64.7C439.6,146.7,365.3,72.4,272,64.7V0h-32v64.7C146.7,72.4,72.4,146.7,64.7,240H0v32h64.7
+				c7.7,93.3,82.1,167.6,175.3,175.3V512h32v-64.7c93.3-7.7,167.6-82.1,175.3-175.3H512V240z M256,399c-79,0-143-64-143-143
+				s64-143,143-143s143,64,143,143S335,399,256,399z"/>
+		</g>
+		</svg>
+		UBICAR MI POSICIÓN
+	</button>
 	
 	<ng-map id="search-map" zoom="11" center="[{{ctrl.originPoint.lat}}, {{ctrl.originPoint.lng}}]">
+
 		<custom-marker ng-repeat="ins in ctrl.institutes"
 		id="marker_{{ins.id}}"
 		on-click="ctrl.showInfoWindow(event,$index);"
-		position="{{ins.point}}">
+		position="{{ins.point}}"
+		ng-class="{selected: 1==1}">
 			<div class="marker" ng-class="ins.inHover ? 'active': ''">
 				{{ins.name}}
 			</div>

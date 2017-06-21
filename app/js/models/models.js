@@ -1,6 +1,8 @@
 function Institute(obj) {
 	console.log(obj);
 	this.id = obj.id ? obj.id:null;
+	this.link = obj.link ? obj.link:null;
+	console.log(this.link);
 	this.name= obj.name ? obj.name: "";
 	this.disciplines = obj.disciplines ? obj.disciplines : [];
 	this.lat = obj.lat ? obj.lat : 0;
@@ -10,10 +12,8 @@ function Institute(obj) {
 	this.disciplinesObj = obj.disciplinesObj ? obj.disciplinesObj : [];
 	this.infoWindow = null;
 	this.show = true;
-	this.phone = obj.phone ? obj.phone : "";
-	this.webPage = obj.webPage ? obj.webPage : "";
 	this.logo = obj.logo;
-	this.show=true;
+	this.show = true;
 	this.distance = obj.distance ? obj.distance : 0;
 	this.showByDiscipline = true;
 	this.showByLocation = true;

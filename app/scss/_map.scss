@@ -1,0 +1,109 @@
+.set-position{
+	position: absolute;
+	top: 0;
+	right:0;
+	z-index: 1;
+	background-color: #fff;
+	color: $gray-text;
+	font-weight: 600;
+	padding: 6px 20px;
+	border: 1px solid $gray-light;
+	border-radius: 2px;
+}
+.icon-locate {
+	width: 14px;
+  height: 14px;
+  top: 2px;
+  display: inline;
+  position: relative;
+  margin-right: 2px;
+}
+.icon-locate-fill {
+	fill: #4990E2;
+}
+
+section.map{
+	font-family: $font-family-sans-serif;
+	position: absolute;
+	right: 0;
+	top: 0;
+	@include respond-to(tablet-port) { 
+		width: 40vw;
+		float: right;
+	}
+	
+	#search-map{
+		height: 100vh;
+		.ng-map-info-window{
+			.carousel{
+				// height: 298px;
+				// width: 402px;
+			}
+		}
+	}
+	.custom-marker{
+		font-size: 1.1em;
+		background: #fff;
+		text-align: center;
+		@include border-radius(2px);
+		@include box-shadow(0px 3px 22px -4px rgba(#000,0.7));
+		.marker{
+			padding: 3px 10px 4px;
+	    font-weight: 800;
+	    font-size: 15px;
+	    color: #C91C10;
+	    line-height: 23px;
+	    @include transition(color 0.1s, background-color 0.1s);
+			&:after{
+				content: '';
+				position: absolute;
+				border-style: solid;
+				border-width: 7px 6px 0;
+				border-color: #fff transparent;
+				display: block;
+				width: 0;
+				z-index: 1;
+				margin-left: -6px;
+				bottom: -6px;
+				left: 50%;
+				@include transition(border-color 0.1s);
+			}
+			&.active{
+				background: $brand-primary;
+				color: $gray-lighter;
+				z-index: 3;
+				&:after{
+					border-color: $brand-primary transparent;
+				}
+			}
+		}
+	}
+	.gm-style {
+		font-family: Titillium;
+	}
+
+	.description {
+		width: 261px;
+		p {
+			font-size: 15px; 
+			line-height: 23px;
+		}
+		.name {
+			font-weight: 600;
+			font-size: 16px;
+			line-height: 24px;
+			color: $color-main;
+			margin: 9px 0 0; 
+		}
+	}
+	.image-container {
+		width: 261px;
+	}
+	.gm-style .gm-style-iw {
+		top: 10px!important;
+		left: 10px;
+	}
+	.gm-style-mtc {
+		display: none;
+	}
+}

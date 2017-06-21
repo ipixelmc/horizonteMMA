@@ -16,7 +16,7 @@
     
     var instituteUrl = 
           prod ? 
-          "/wp-content/themes/gloria-child/map/json/academias" : 
+          "/wp-content/themes/gloria-child/map/json/academias.json" : 
           "http://localhost:8888/hm/wp-content/themes/gloria-child/map/json/academias.json";
     
     var errorCallbackService = function (error) {

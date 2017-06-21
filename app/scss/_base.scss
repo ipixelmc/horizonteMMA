@@ -1,0 +1,26 @@
+
+.post-type-archive {
+	background-color: #fff;
+}
+
+#page-map {
+	a {
+		color: #c91c10;
+		text-decoration: none;
+		&:active,
+		&:focus,
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+a {
+	color: #c91c10;
+	text-decoration: none;
+	&:active,
+	&:focus,
+	&:hover {
+		text-decoration: none;
+	}
+}

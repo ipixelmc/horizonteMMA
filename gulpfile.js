@@ -171,7 +171,7 @@ gulp.task('browser-sync', function() {
 
 
 gulp.task('serve', ['compass', 'browser-sync'], function () {
-  // gulp.watch(paths.app + "scss/**/*.scss", ['compass']);
+  gulp.watch(paths.app + "scss/**/*.scss", ['compass']);
 });
 
 

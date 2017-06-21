@@ -5,23 +5,27 @@
       <div class="image-container">
         <ul rn-carousel class="carousel" rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-transition="fadeAndSlide">
           <li ng-repeat="image in ins.images track by $index">
-            <img ng-src="{{image}}"/>
+            <a ng-href="{{ins.link}}" target="_blank">
+              <img ng-src="{{image}}"/>
+            </a>
           </li>
         </ul>
-        <img class="image-container-logo" ng-src="{{ins.logo}}">
-        <span class="distance">{{ ins.distance | tokilometers }}</span>
+        <a ng-href="{{ins.link}}" target="_blank">
+          <img class="image-container-logo" ng-src="{{ins.logo}}">
+          <span class="distance">{{ ins.distance | tokilometers }}</span>
+        </a>
       </div>
 
       <div class="description">
-        <p class="name">{{ins.name}}</p>
-        <!-- IKSELITA te agregé un bonito filtroooooo -->
-        <p class="address">{{ins.address}}</p>
-        <p class="discipline">
-          <span ng-repeat="dis in ins.disciplinesObj">
-            {{dis.name}} <span class="discipline-divider" ng-if="!$last">•</span>
-          </span>
-        </p>
-        </p>
+        <a ng-href="{{ins.link}}" target="_blank">
+          <p class="name">{{ins.name}}</p>
+          <p class="address">{{ins.address}}</p>
+          <p class="discipline">
+            <span ng-repeat="dis in ins.disciplinesObj">
+              {{dis.name}} <span class="discipline-divider" ng-if="!$last">•</span>
+            </span>
+          </p>
+        </a>
       </div>
     </div> 
     <div class="col-md-6 col-md-offset-3" ng-if="ctrl.showButtonMore">
