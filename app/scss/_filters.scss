@@ -4,6 +4,9 @@
   padding-bottom: 20px;
 	background-color: #fff;
 	border-bottom: 1px solid $gray-lighter;
+  @media (max-width: 1127px){
+    display: none;
+  }
 	.slider.slider-horizontal{
 		width: 100%;
 	}
@@ -82,9 +85,4 @@
       }
     }
   }
-	// @include respond-to(tablet-port) { 
-	// 	width: 60vw;
-	// 	position: absolute;
-	// 	left: 0;
-	// }
 }

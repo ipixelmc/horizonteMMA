@@ -45,9 +45,10 @@ section.map{
 	}
 	@media (max-width: 743px){
 		width: 100%;
-		display: none;
+		z-index: 0;
 		&.active {
-			display: block;
+			// display: block;
+			z-index: 2;
 		}
 	}
 	

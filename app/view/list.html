@@ -1,6 +1,6 @@
 <div class="fluid-container" ng-controller="ListController as ctrl">
   <div class="row">
-    <div class="item col-sm-6 content animated fadeIn" ng-repeat ="ins in ctrl.institutes | filter : ctrl.listFilterFn" ng-mouseover="ctrl.changeHover($index);">
+    <div class="item animated fadeIn" ng-repeat ="ins in ctrl.institutes | filter : ctrl.listFilterFn" ng-mouseover="ctrl.changeHover($index);">
     
       <div class="image-container">
         <ul rn-carousel class="carousel" rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-transition="fadeAndSlide">

@@ -98,6 +98,19 @@ ul[rn-carousel] {
 }
 
 .item {
+	float: left;
+	position: relative;
+	min-height: 1px;
 	padding-left: 10px!important;
   padding-right: 10px!important;
+
+  width: 100%;
+
+	@media (min-width: 1440px){
+		width: 33.3%;
+	}
+	@media (min-width: 1128px) and (max-width: 1439px){
+		width: 50%;
+	}
+
 }

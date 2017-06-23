@@ -9,16 +9,6 @@ body{
 	overflow-x : hidden;
 }
 
-// #page-inner-wrap {
-
-// 	padding-top: 100px;
-// 	@media (min-width: 992px){
-// 		height: 100%;
-// 	}
-// 	@media (max-width: 991px){
-// 		padding-top: 60px;
-// 	}
-// }
 .map-container {
 	.fluid-container {
 		margin: 0 20px;
@@ -41,5 +31,6 @@ section.items {
 	}
 	@media (max-width: 743px){
 		width: 100%;
+		z-index: 1;
 	}
 }

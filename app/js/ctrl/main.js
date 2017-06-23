@@ -10,12 +10,24 @@
 
     ctrl.page = {
     	mapActive: false,
+    	listActive: true,
     	filters: ''
     }
 
     ctrl.toggleView = function(){
-    	console.log('test');
-    	ctrl.page.mapActive = !ctrl.page.mapActive;
+    	console.log(ctrl.page.mapActive, 'map');
+    	if (ctrl.page.mapActive == true) {
+    		ctrl.page.mapActive = false;
+    		// $timeout(function() {
+    			ctrl.page.listActive = true;
+    			// $scope.$apply();
+    		// }, 25);
+    	} else {
+    		ctrl.page.listActive = false;
+    		// $timeout(function() {
+    			ctrl.page.mapActive = true;
+    		// }, 25);
+    	}
     }
 
   }
