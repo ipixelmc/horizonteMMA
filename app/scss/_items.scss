@@ -8,15 +8,8 @@
 	}
 	.name {
 		color: $color-main;
-		// @extend %cutText;
 	}
-	// .address {
-	// 	// @extend %cutText;
-	// }
-
 }
-
-
 .rn-carousel-control{
 	top: 0;
 	width: 35%;
@@ -104,3 +97,7 @@ ul[rn-carousel] {
 	}
 }
 
+.item {
+	padding-left: 10px!important;
+  padding-right: 10px!important;
+}

@@ -42,9 +42,50 @@
   <!-- endbuild -->
 </head>
 <body ng-app="horizonteMMAModule">
-  <div class="search-section">
-    <section ng-include="'view/filters.html'" class="filters"></section>
-    <section ng-include="'view/list.html'" class="list"></section>
+  <div class="map-container" ng-controller="MainController as ctrl">
+
+    <div class="switcher-container">
+      <div class="sections-switcher">
+        <div class="btn-container">
+          <a href="#" class="btn-left" ng-click="ctrl.toggleView()">
+            <span class="btn-text" ng-class="!ctrl.page.mapActive ? 'active' : ''">
+              PUBLICA
+              <svg viewBox="0 0 12 4" role="presentation" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M10.5 3.5a1.5 1.5 0 1 0-.001-3.001A1.5 1.5 0 0 0 10.5 3.5zM6 3.5A1.5 1.5 0 1 0 5.999.499 1.5 1.5 0 0 0 6 3.5zm-4.5 0A1.5 1.5 0 1 0 1.499.499 1.5 1.5 0 0 0 1.5 3.5z"></path></svg>
+            </span>
+            <span class="btn-text" ng-class="ctrl.page.mapActive ? 'active' : ''">
+              MAPA
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+              <path d="M256,32c-79.529,0-144,64.471-144,144c0,112,144,304,144,304s144-192,144-304C400,96.471,335.529,32,256,32z M256,222.9
+                c-25.9,0-46.9-21-46.9-46.9s21-46.9,46.9-46.9s46.9,21,46.9,46.9S281.9,222.9,256,222.9z"/>
+              </svg>
+            </span>
+          </a>
+          <div class="divider">
+            <div class="divider-inner"></div>
+          </div>
+          <a href="#" class="btn-right">
+            <span class="btn-text">
+              FILTROS 
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <g>
+                  <path d="M32,376h283.35c6.186-14.112,20.281-24,36.65-24s30.465,9.888,36.65,24H480v32h-91.35c-6.186,14.112-20.281,24-36.65,24
+                    s-30.465-9.888-36.65-24H32"/>
+                  <path d="M32,240h91.35c6.186-14.112,20.281-24,36.65-24s30.465,9.888,36.65,24H480v32H196.65c-6.186,14.112-20.281,24-36.65,24
+                    s-30.465-9.888-36.65-24H32"/>
+                  <path d="M32,104h283.35c6.186-14.112,20.281-24,36.65-24s30.465,9.888,36.65,24H480v32h-91.35c-6.186,14.112-20.281,24-36.65,24
+                    s-30.465-9.888-36.65-24H32"/>
+                </g>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <section class="items">
+      <div ng-include="'view/filters.html'" class="filters"></div>
+      <div ng-include="'view/list.html'" class="list"></section>
+    </section>
     <section ng-include="'view/map.html'" class="map"></section>
   </div>
 </body>
