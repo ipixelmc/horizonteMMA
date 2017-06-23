@@ -1,19 +1,19 @@
-@mixin respond-to($media) {
-  @if $media == desktop {
-    @media only screen and (min-width: $desktop) { @content; }
-  }
-  @else if $media == tablet-land {
-    @media only screen and (max-width: $tablet-land) { @content; }
-  }
-   @else if $media == tablet-port {
-    @media only screen and (min-width: $tablet-port) { @content; }
-  }
-   @else if $media == mobile-land {
-    @media only screen and (max-width: $mobile-land) { @content; }
-  }
-  @else if $media == mobile-port {
-    @media only screen and (max-width: $mobile-port) { @content; }
-  }
-}
+// @mixin respond-to($media) {
+//   @if $media == desktop {
+//     @media only screen and (min-width: $desktop) { @content; }
+//   }
+//   @else if $media == tablet-land {
+//     @media only screen and (max-width: $tablet-land) { @content; }
+//   }
+//    @else if $media == tablet-port {
+//     @media only screen and (min-width: $tablet-port) { @content; }
+//   }
+//    @else if $media == mobile-land {
+//     @media only screen and (max-width: $mobile-land) { @content; }
+//   }
+//   @else if $media == mobile-port {
+//     @media only screen and (max-width: $mobile-port) { @content; }
+//   }
+// }
 
 //example  @include respond-to(desktop) { width: 100% ;}

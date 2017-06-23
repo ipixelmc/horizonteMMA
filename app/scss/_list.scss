@@ -1,10 +1,7 @@
 .list{
 	padding-top: 20px;
-	padding-bottom: 70px;
+	// padding-bottom: 70px;
 	background-color: #fff;
-	.btn-outline {
-		margin-top: 40px;
-	}
 	.description {
 		height: 100px;
 		p {
@@ -17,5 +14,12 @@
 			line-height: 36px;
 			margin: 10px 10px 0 0; 
 		}
+	}
+}
+.list-bottom {
+	padding: 40px 0 70px;
+	&.col-md-6 {
+		padding-left: 10px!important;
+		
 	}
 }

@@ -18,7 +18,20 @@ body{
     margin-right: -10px;
 	}
 }
-
+.post-type-archive-academias .map-container {
+	padding-top: 100px;
+  position: relative;
+  @media (max-width: 991px){
+		padding-top: 60px;
+	}
+}
+.post-type-archive-academias .map-container {
+	padding-top: 100px;
+  position: relative;
+  @media (max-width: 991px){
+		padding-top: 60px;
+	}
+}
 section.items {
 	position: relative;
   z-index: 0;

@@ -42,6 +42,5 @@
 }
 
 .btn-outline {
-  margin-top: 40px;
 	@include button-variant-custom(#484848, #fff, #484848, #fff, $color-main, $color-main);
 }

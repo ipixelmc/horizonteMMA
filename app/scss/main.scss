@@ -1,17 +1,17 @@
-@import 'http://localhost:8888/hm/wp-content/themes/gloria/framework/bootstrap/css/bootstrap.css';
+// @import 'http://localhost:8888/hm/wp-content/themes/gloria/framework/bootstrap/css/bootstrap.css';
 
 @import 'variables';
 // @import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'base';
-@import 'mixin';
+// @import 'mixin';
 @import 'compass';
 @import 'ionicons/ionicons';
 @import 'fonts';
+@import 'home';
 @import 'buttons';
 @import 'items';
 @import 'list';
 @import 'map';
 @import 'filters';
 @import 'switcher';
-@import 'home';
 
