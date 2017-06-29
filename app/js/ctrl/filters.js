@@ -26,6 +26,15 @@
       visible: false
     }
 
+    // ctrl.openFilters = function() {
+    //   console.log("momo");
+    //   console.log(ctrl.overlay.active);
+    //   setTimeout(function() {
+    //     // ctrl.$apply();
+    //     ctrl.overlay.active = true;        
+    //   }, 0);
+    // }
+
     var init = function(){
     	ctrl.disciplines = modelService.getDisciplines();
       ctrl.model = modelService.getFilters();
@@ -190,7 +199,14 @@
     ctrl.filterByDiscipline();
    }
 
-   init();
+    $scope.$on('filters.open', function() {
+      ctrl.overlay.active = true;
+    });
 
- }
+    init();
+
+   	ctrl.applyAllFilters = function(){
+   		console.log('mooooo');
+    }
+  }
 })();

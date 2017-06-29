@@ -96,6 +96,17 @@
   left: 0;
   position: fixed;
   z-index: 1010;
+  @include transform( translate3d(0,100%,0) );
+  @include transition(transform .3s);
+  will-change: transform !important;
+  // opacity: 0;
+  &.active {
+    @include transform( translate3d(0,0,0));
+    // top: 100%;
+  }
+  &.visible {
+    // opacity: 1;
+  }
 }
 
 .filter-content {
@@ -157,6 +168,11 @@
     }
   }
 }
+.filter-header-title {
+  margin: 0;
+  font-weight: 400;
+  color: #333;
+}
 .filter-body {
   padding: 0 20px;
   width: 100%;
@@ -205,11 +221,8 @@
       background-image: none;
       border: 1px solid #ccc;
       border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-      -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-      -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+      @include transition(border-color ease-in-out .15s,box-shadow ease-in-out .15s);
 
       position: relative;
       z-index: 2;
