@@ -7,17 +7,29 @@
   function dataService($http) {
     var prod = false;
     
+    // var filtersUrl = {
+    //   discipline: 
+    //     prod ? 
+    //     '/wp-content/themes/gloria-child/map/json/disciplinas.json' : 
+    //     'http://localhost:8888/hm/wp-content/themes/gloria-child/map/json/disciplinas.json'
+    // };
+    
+    // var instituteUrl = 
+    //       prod ? 
+    //       "/wp-content/themes/gloria-child/map/json/academias.json" : 
+    //       "http://localhost:8888/hm/wp-content/themes/gloria-child/map/json/academias.json";
+
     var filtersUrl = {
       discipline: 
         prod ? 
         '/wp-content/themes/gloria-child/map/json/disciplinas.json' : 
-        'http://localhost:8888/hm/wp-content/themes/gloria-child/map/json/disciplinas.json'
+        '../../data/disciplinas.json'
     };
     
     var instituteUrl = 
           prod ? 
           "/wp-content/themes/gloria-child/map/json/academias.json" : 
-          "http://localhost:8888/hm/wp-content/themes/gloria-child/map/json/academias.json";
+          "../../data/academias.json";
     
     var errorCallbackService = function (error) {
       console.log("Ha ocurrido un error en la petición");
