@@ -10,6 +10,8 @@
     var slider;
 
 
+    ctrl.a ="monoooo";
+
     var init = function(){
     	ctrl.disciplines = modelService.getDisciplines();
       ctrl.model = modelService.getFilters();

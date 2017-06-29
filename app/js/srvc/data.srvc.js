@@ -5,7 +5,7 @@
   .service('DataService', dataService);
   dataService.$inject = ['$http'];
   function dataService($http) {
-    var prod = true;
+    var prod = false;
     
     var filtersUrl = {
       discipline: 
