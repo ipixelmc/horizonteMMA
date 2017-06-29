@@ -6,11 +6,25 @@
   homeController.$inject = ['ModelService', 'MapService','$scope','$timeout'];
   function homeController(modelService, mapService, $scope, $timeout) {
     var ctrl = this;
-    ctrl.model= {};
+    ctrl.model = {};
     var slider;
 
+    ctrl.disciplinesArray = {
+      data: [],
+      toggle: function(id) {
+        var exist = ctrl.disciplinesArray.data.indexOf(id);
+        if (exist > -1) {
+          ctrl.disciplinesArray.data.splice(exist, 1);
+        } else {
+          ctrl.disciplinesArray.data.push(id);
+        }
+      }
+    };
 
-    ctrl.a ="monoooo";
+    ctrl.overlay = {
+      active: false,
+      visible: false
+    }
 
     var init = function(){
     	ctrl.disciplines = modelService.getDisciplines();
@@ -66,7 +80,7 @@
     }
 
     ctrl.places = {};
-    ctrl.places.show =false;
+    ctrl.places.show = false;
     ctrl.applyFilterPlace = false;
 
     ctrl.getShowInstitutes = function(){
@@ -104,9 +118,14 @@
     }
 
     ctrl.filterByDiscipline = function(){
-      if(ctrl.model.discipline.id > 0){
+
+      // if (ctrl.model.discipline.id > 0){
+      if (ctrl.disciplinesArray.data.lenght > 0) {
         _.forEach(ctrl.institutes, function(el) {
-          var dis = _.find(el.disciplinesObj, function(o){return ctrl.model.discipline.id == o.id} );
+          var dis = _.find(el.disciplinesObj, function(o){
+            return ctrl.disciplinesArray.data.indexOf(disciplina.id) > -1 ? true:false
+            // return ctrl.model.discipline.id == o.id;
+          } );
           if (dis){
             _.set(el, 'showByDiscipline', true);
           }else{
@@ -114,7 +133,7 @@
           }
 
         });
-      }else{
+      } else {
         _.forEach(ctrl.institutes, function(el) {
           _.set(el, 'showByDiscipline', true);
         });
@@ -166,7 +185,8 @@
    }
 
    ctrl.resetDiscipline = function(){
-    ctrl.model.discipline = ctrl.disciplines[0];
+    ctrl.model.discipline = ctrl.disciplines[0]; //borrar
+    ctrl.disciplinesArray.data = [];
     ctrl.filterByDiscipline();
    }
 

@@ -11,7 +11,6 @@
   <!-- build:css css/main.css-->
   <link rel="stylesheet" type="text/css" href="resource/animate.css">
   <link rel="stylesheet" href="bower_components/angular-carousel/dist/angular-carousel.css">
-  <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css">
   <link rel="stylesheet" href="css/main.css">
   <!-- endbuild -->
 
@@ -88,12 +87,24 @@
     <section ng-include="'view/map.html'" class="map" ng-class="{'active': ctrl.page.mapActive == true}"></section>
 
 
-    <div class="filter-overlay" ng-controller="FiltersController as ctrl">
+    <div class="filter-overlay" 
+      ng-controller="FiltersController as ctrl" 
+      ng-class="{
+        'active': ctrl.overlay.active,
+        'visible': ctrl.overlay.visible
+      }"
+    >
       <div class="filter-content">
         <div class="filter-header">
           <div class="filter-header-section left">
-            <button type="button" class="container_1rp5252" aria-expanded="false" style="padding: 20px; margin: -20px;">
-            <svg viewBox="0 0 12 12" role="img" aria-label="Cerrar" focusable="false" style="display: block; height: 15px; width: 15px;"><path fill-rule="evenodd" d="M11.5 10.5c.3.3.3.8 0 1.1-.3.3-.8.3-1.1 0L6 7.1l-4.5 4.5c-.3.3-.8.3-1.1 0-.3-.3-.3-.8 0-1.1L4.9 6 .5 1.5C.2 1.2.2.7.5.4c.3-.3.8-.3 1.1 0L6 4.9 10.5.4c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1L7.1 6l4.4 4.5z"></path></svg>
+            <button 
+              type="button" 
+              class="container_1rp5252" 
+              aria-expanded="false" 
+              style="padding: 20px; margin: -20px;"
+              ng-click="ctrl.showDetailed = false"
+            >
+              <svg viewBox="0 0 12 12" role="img" aria-label="Cerrar" focusable="false" style="display: block; height: 15px; width: 15px;"><path fill-rule="evenodd" d="M11.5 10.5c.3.3.3.8 0 1.1-.3.3-.8.3-1.1 0L6 7.1l-4.5 4.5c-.3.3-.8.3-1.1 0-.3-.3-.3-.8 0-1.1L4.9 6 .5 1.5C.2 1.2.2.7.5.4c.3-.3.8-.3 1.1 0L6 4.9 10.5.4c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1L7.1 6l4.4 4.5z"></path></svg>
             </button>
           </div>
           <div class="filter-header-section center">
@@ -106,15 +117,27 @@
         <div class="filter-body">
           <div class="filter-section row">
             <div class="col-xs-12">
-              <h2>Disciplinas</h2> 
+              <h3>Disciplinas</h3>
+              {{ctrl.model.discipline}}
+              {{ctrl.discipline}}
+              {{ctrl.model.discipline.id}}
+              {{ctrl.disciplinesArray.data}}
             </div>
-            <div class="col-xs-6 col-sm-4" ng-repeat="disciplina in ctrl.disciplines">
+              <!-- <form name="disciplinas"> -->
+            <div class="col-xs-6 col-sm-4" ng-repeat="disciplina in ctrl.disciplines" ng-if="disciplina.id > 0">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"> {{disciplina.name}}
+                  <input 
+                    type="checkbox" 
+                    name="selectedDisciplines[]"
+                    value="{{disciplina.id}}"
+                    ng-checked="ctrl.disciplinesArray.data.indexOf(disciplina.id) > -1" 
+                    ng-click="ctrl.disciplinesArray.toggle(disciplina.id)"
+                  > {{disciplina.name}}
                 </label>
               </div>
             </div>
+              <!-- </form> -->
             <div class="col-xs-6 col-sm-4">
               <div class="checkbox">
                 <label>
@@ -125,24 +148,28 @@
           </div>
           <div class="filter-section row">
             <div class="col-xs-12">
-              <h2>Rango de cercania</h2>              
+              <h3>Rango de cercania</h3>
             </div>
             <div class="col-xs-12">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"> Filtrar por cercania
+                  <input type="checkbox" ng-change="ctrl.activateDistance();" ng-model="ctrl.activeDistance" name="" class="">
+                   Filtrar por cercania (km)
                 </label>
               </div>
             </div>
-            <div class="col-xs-12">
-              assa
+            <!-- <div class="col-xs-12">
+            </div> -->
+            <div ng-if="ctrl.activeDistance == true " class="col-xs-12 animated fadeIn" >
+              <rzslider
+                rz-slider-model="ctrl.distance"
+                rz-slider-options="ctrl.sliderOptions"></rzslider>
             </div>
           </div>
           <div class="filter-section row">
             <div class="col-xs-12">
-              <h2>Ubicación</h2>              
+              <h3>Ubicación</h3>
             </div>
-
             <div class="col-xs-12">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar">
