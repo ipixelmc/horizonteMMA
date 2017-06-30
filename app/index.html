@@ -117,7 +117,7 @@
             <h3 class="filter-header-title">FILTROS</h3>
           </div>
           <div class="filter-header-section right">
-            <a>Quitar filtros</a>
+            <a ng-click="ctrl.removeAllFilters()">Quitar filtros</a>
           </div>
         </div>
         <div class="filter-body">
@@ -164,8 +164,6 @@
                 </label>
               </div>
             </div>
-            <!-- <div class="col-xs-12">
-            </div> -->
             <div ng-if="ctrl.activeDistance == true " class="col-xs-12 animated fadeIn" >
               <rzslider
                 rz-slider-model="ctrl.distance"

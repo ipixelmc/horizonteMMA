@@ -35,7 +35,6 @@
         distanceRange.max = d>distanceRange.max ? d: distanceRange.max;
         distanceRange.min = distanceRange.min==0 || d<distanceRange.min ? d: distanceRange.min;
       }
-      
       return d;
     }
     var mapService = {
@@ -58,6 +57,7 @@
         return distanceRange;
       },
       setFinalCalculate : function (status) {
+        console.log(distanceRange);
         distanceRange.status = status;
       },
       setUserPoint: function(point){

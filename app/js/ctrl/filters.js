@@ -127,12 +127,13 @@
     }
 
     ctrl.filterByDiscipline = function(){
-
+      console.log('estoy filtrando');
       // if (ctrl.model.discipline.id > 0){
-      if (ctrl.disciplinesArray.data.lenght > 0) {
+      if (ctrl.disciplinesArray.data.length > 0) {
+        console.log('si hay foltro');
         _.forEach(ctrl.institutes, function(el) {
           var dis = _.find(el.disciplinesObj, function(o){
-            return ctrl.disciplinesArray.data.indexOf(disciplina.id) > -1 ? true:false
+            return ctrl.disciplinesArray.data.indexOf(o.id) > -1 ? true:false
             // return ctrl.model.discipline.id == o.id;
           } );
           if (dis){
@@ -207,6 +208,19 @@
 
    	ctrl.applyAllFilters = function(){
    		console.log('mooooo');
+      ctrl.filterByDiscipline();
+      $timeout(function () {
+        ctrl.overlay.active = false;
+      },25);
+    }
+
+    ctrl.removeAllFilters = function(){
+      console.log('remove');
+      ctrl.disciplinesArray.data = [];
+      ctrl.filterByDiscipline();
+      $timeout(function () {
+        ctrl.overlay.active = false;
+      },25);
     }
   }
 })();
