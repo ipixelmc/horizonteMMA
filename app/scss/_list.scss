@@ -1,6 +1,10 @@
 .list{
-	padding-top: 20px;
-	// padding-bottom: 70px;
+  @media (min-width: 1128px){
+		padding-top: (20px + 76px);
+  }
+	@media (max-width: 1127px){
+		padding-top: 20px;
+  }
 	background-color: #fff;
 	.description {
 		height: 100px;

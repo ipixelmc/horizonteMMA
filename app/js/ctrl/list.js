@@ -3,8 +3,8 @@
   'use strict';
   angular.module('horizonteMMAModule')
   .controller('ListController', listController);
-  listController.$inject = ['ModelService', 'tokilometersFilter'];
-  function listController(modelService, tokilometersFilter) {
+  listController.$inject = ['ModelService', 'tokilometersFilter', '$scope', '$rootScope'];
+  function listController(modelService, tokilometersFilter, $scope, $rootScope) {
     var ctrl = this;
     ctrl.hoverNew = 0;
     ctrl.tamMax = 5;
@@ -37,6 +37,10 @@
         return true;
       }
       return false;
+    }
+
+    ctrl.toggleFilter = function(type){
+      $rootScope.$broadcast('filters.open', type);
     }
 
     init();

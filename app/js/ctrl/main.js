@@ -33,7 +33,7 @@
     ctrl.openFilters = function() {
       console.log("momo");
       // $timeout(function () {
-        $scope.$broadcast('filters.open');
+      $scope.$broadcast('filters.open');
       // });
       // console.log(ctrl.overlay.active);
       // setTimeout(function() {

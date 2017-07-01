@@ -1,4 +1,57 @@
 <div class="fluid-container" ng-controller="ListController as ctrl">
+  
+
+
+  <div class="filters">
+    <div class="row">
+      
+      <div class="col-md-12">
+        <button class="btn btn-filter" ng-click="ctrl.toggleFilter('place')">
+          <span class="label">
+            Ubicación           
+          </span>
+          <span class="icon">
+            <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
+          </span>
+        </button>
+        <button class="btn btn-filter" ng-click="ctrl.toggleFilter('disciplinas')">
+          <span class="label">
+            Disciplinas           
+          </span>
+          <span class="icon">
+            <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
+          </span>
+        </button>
+        <button class="btn btn-filter" ng-click="ctrl.toggleFilter('cercania')">
+          <span class="label">
+            Cercania           
+          </span>
+          <span class="icon">
+            <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
+          </span>
+        </button>
+        <button class="btn btn-filter" ng-click="ctrl.toggleFilter('all')">
+          <span class="label">
+            Todos los filtros           
+          </span>
+          <span class="icon">
+            <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
+          </span>
+        </button>
+       <!--  <div class="form-group">
+          <label for="formDisciplina">Disciplina</label>
+          <input type="email" class="form-control" id="formDisciplina" placeholder="Email">
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <p> Mostrando {{ctrl.getShowInstitutes()}} academias</p>      
+    </div>
+  </div>
   <div class="row">
     <div class="item animated fadeIn" ng-repeat ="ins in ctrl.institutes | filter : ctrl.listFilterFn" ng-mouseover="ctrl.changeHover($index);">
     

@@ -1,26 +1,31 @@
-.filters{
+.filters {
 	z-index: 2;
-  margin-bottom: 25px;
-  padding-bottom: 20px;
+  padding: 20px;
 	background-color: #fff;
 	border-bottom: 1px solid $gray-lighter;
+  position: fixed;
+  left: 0;
+  top: 0;
+  @extend %leftColumn;
   @media (max-width: 1127px){
     display: none;
   }
 	.slider.slider-horizontal{
 		width: 100%;
 	}
-  .icon{
-    cursor: pointer;
-    position: absolute;
-    right: 5px;
-    border: 1px solid $gray-lighter;
-    padding: 5px 17px;
-    top: 0;
-    &:hover{
-      background-color: $gray-lighter;
-    }
-  }
+
+  @extend %leftColumn;
+  // .icon{
+  //   cursor: pointer;
+  //   position: absolute;
+  //   right: 5px;
+  //   border: 1px solid $gray-lighter;
+  //   padding: 5px 17px;
+  //   top: 0;
+  //   &:hover{
+  //     background-color: $gray-lighter;
+  //   }
+  // }
 	.resume{
     .elm {
     	display: flex;
@@ -99,13 +104,10 @@
   @include transform( translate3d(0,100%,0) );
   @include transition(transform .3s);
   will-change: transform !important;
-  // opacity: 0;
   &.active {
     @include transform( translate3d(0,0,0));
-    // top: 100%;
   }
   &.visible {
-    // opacity: 1;
   }
 }
 
@@ -198,6 +200,12 @@
   padding-top: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #DBDBDB;
+  @media (min-width: 1128px){
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
   h3 {
     margin-top: 16px;
     margin-bottom: 16px;

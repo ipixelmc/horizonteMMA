@@ -23,8 +23,14 @@
 
     ctrl.overlay = {
       active: false,
-      visible: false
+      visible: false,
+      current: 'all'
+      // toggle: function(type){
+      //   // $scope.$broadcast('filters.open', type);
+      //   $scope.$broadcast('filters.open');
+      // }
     }
+
 
     // ctrl.openFilters = function() {
     //   console.log("momo");
@@ -74,6 +80,7 @@
         } 
       });
     }
+
     ctrl.activateDistance = function(){
       if(ctrl.activeDistance==true){
         ctrl.initSlider(); 
@@ -85,7 +92,6 @@
           _.set(el, 'showByDistance', true);
         });
       }
-
     }
 
     ctrl.places = {};
@@ -194,13 +200,18 @@
     ctrl.activateDistance();
    }
 
-   ctrl.resetDiscipline = function(){
-    ctrl.model.discipline = ctrl.disciplines[0]; //borrar
-    ctrl.disciplinesArray.data = [];
-    ctrl.filterByDiscipline();
-   }
+    ctrl.resetDiscipline = function(){
+      ctrl.model.discipline = ctrl.disciplines[0]; //borrar
+      ctrl.disciplinesArray.data = [];
+      ctrl.filterByDiscipline();
+    }
 
-    $scope.$on('filters.open', function() {
+    $scope.$on('filters.open', function(event, type) {
+      console.log(type);
+      if (type) {
+        console.log(type)
+        ctrl.overlay.current = type;
+      }
       ctrl.overlay.active = true;
     });
 
@@ -209,6 +220,7 @@
    	ctrl.applyAllFilters = function(){
    		console.log('mooooo');
       ctrl.filterByDiscipline();
+      ctrl.searchPlaces();//llama busqueda de lugares
       $timeout(function () {
         ctrl.overlay.active = false;
       },25);
@@ -218,6 +230,7 @@
       console.log('remove');
       ctrl.disciplinesArray.data = [];
       ctrl.filterByDiscipline();
+      ctrl.activateDistance();
       $timeout(function () {
         ctrl.overlay.active = false;
       },25);

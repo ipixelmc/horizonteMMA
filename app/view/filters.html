@@ -2,11 +2,42 @@
   
   <div class="row resume animated " ng-show="!ctrl.showDetailed" ng-class="ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
 
-    <div class="col-sm-12">
-      <p> Mostrando {{ctrl.getShowInstitutes()}} escuelas </p>
-      <i class="fa fa-pencil icon animated fadeIn" aria-hidden="true" ng-click="ctrl.showDetailed = true" ng-if="!ctrl.showDetailed"></i>
+    <div class="col-md-12">
+      <button class="btn btn-filter" ng-click="ctrl.overlay.toggle('place')">
+        <span class="label">
+          Ubicación           
+        </span>
+        <span class="icon">
+          <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
+        </span>
+      </button>
+      {{ctrl.overlay.place}}
+      <button class="btn btn-filter">
+        <span class="label">
+          Disciplinas           
+        </span>
+        <span class="icon">
+          <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
+        </span>
+      </button>
+      <button class="btn btn-filter">
+        <span class="label">
+          Cercania           
+        </span>
+        <span class="icon">
+          <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
+        </span>
+      </button>
+     <!--  <div class="form-group">
+        <label for="formDisciplina">Disciplina</label>
+        <input type="email" class="form-control" id="formDisciplina" placeholder="Email">
+      </div> -->
     </div>
-    <div class="col-sm-4 elm">
+
+    <!-- <div class="col-sm-12">
+      <i class="fa fa-pencil icon animated fadeIn" aria-hidden="true" ng-click="ctrl.showDetailed = true" ng-if="!ctrl.showDetailed"></i>
+    </div> -->
+   <!--  <div class="col-sm-4 elm">
       <div class="text-inner" ng-click="ctrl.showDetailed = true">
         <span>{{ctrl.model.discipline.name}}</span>
       </div>
@@ -31,7 +62,7 @@
       <div ng-click="ctrl.resetDistance();">
         <i class="fa fa-times" aria-hidden="true"></i>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="col-sm-12 detailed animated" ng-show="ctrl.showDetailed == true" ng-class="!ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">

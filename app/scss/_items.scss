@@ -97,6 +97,8 @@ ul[rn-carousel] {
 	}
 }
 
+
+
 .item {
 	float: left;
 	position: relative;
@@ -105,7 +107,6 @@ ul[rn-carousel] {
   padding-right: 10px!important;
 
   width: 100%;
-
 	@media (min-width: 1440px){
 		width: 33.3%;
 	}
