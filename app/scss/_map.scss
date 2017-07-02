@@ -22,27 +22,12 @@
 	fill: #4990E2;
 }
 
-section.map{
+section.map {
 	font-family: $font-family-sans-serif;
-	// position: absolute;
-	// right: 0;
-	// top: 0;
-
 	position: fixed;
-  // display: none;
   bottom: 0px;
   right: 0px;
-  
   height: 100%;
-	
-  top: 100px;
-	height: calc( 100% - 100px );
-
-	@media (max-width: 991px){
-		top: 60px;
-		height: calc( 100% - 60px );
-	}
-
   @media (max-width: 1127px){
 		width: 50%;
 	}
@@ -53,7 +38,6 @@ section.map{
 		width: 100%;
 		z-index: 0;
 		&.active {
-			// display: block;
 			z-index: 2;
 		}
 	}

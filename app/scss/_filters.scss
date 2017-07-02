@@ -100,7 +100,7 @@
   top: 0;
   left: 0;
   position: fixed;
-  z-index: 1010;
+  z-index: 1021;
   @include transform( translate3d(0,100%,0) );
   @include transition(transform .3s);
   will-change: transform !important;

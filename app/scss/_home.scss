@@ -22,5 +22,18 @@ section.items {
   @media (max-width: 991px){
 		padding-top: 60px;
 	}
+	.filters,
+	section.map {
+	  top: 100px;
+		@media (max-width: 991px){
+			top: 60px;
+		}
+	}
+	section.map {
+		height: calc( 100% - 100px );
+		@media (max-width: 991px){
+			height: calc( 100% - 60px );
+		}
+	}
 }
 
