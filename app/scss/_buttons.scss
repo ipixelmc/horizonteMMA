@@ -13,10 +13,6 @@
   line-height: 1.42857;
   @include user-select(none);
 }
-.btn-block {
-  display: block;
-  width: 100%;
-}
 @mixin button-variant-custom($color, $background, $border, $color-hover, $background-hover, $border-hover) {
   color: $color;
   background-color: $background;
@@ -40,11 +36,13 @@
         border-color: $border-hover;
   }
 }
-
 .btn-outline {
 	@include button-variant-custom(#484848, #fff, #484848, #fff, $color-main, $color-main);
 }
-
+.btn-block {
+  display: block;
+  width: 100%;
+}
 .btn-filter {
   @include button-variant-custom(#333, #fff, #fff, #333, #F2F2F2, #fff);
   font-weight: 300;

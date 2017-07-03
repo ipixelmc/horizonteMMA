@@ -4,3 +4,4 @@ node_modules/
 app/css/*.css
 .sass-cache/
 app/bower_components/
+**/.DS_Store
