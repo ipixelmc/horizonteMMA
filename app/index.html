@@ -94,12 +94,12 @@
 
 
     <div class="filter-overlay" 
-      ng-controller="FiltersController as ctrl" 
+      ng-controller="FiltersController as vmFilters" 
       ng-class="{
-        'active': ctrl.overlay.active,
-        'visible': ctrl.overlay.visible
+        'active': vmFilters.overlay.active,
+        'visible': vmFilters.overlay.visible
       }"
-    >
+    >{{vmFilters.model}}
       <div class="filter-content">
         <div class="filter-header">
           <div class="filter-header-section left">
@@ -108,7 +108,7 @@
               class="container_1rp5252" 
               aria-expanded="false" 
               style="padding: 20px; margin: -20px;"
-              ng-click="ctrl.overlay.active = false"
+              ng-click="vmFilters.overlay.active = false"
             >
               <svg viewBox="0 0 12 12" role="img" aria-label="Cerrar" focusable="false" style="display: block; height: 15px; width: 15px;"><path fill-rule="evenodd" d="M11.5 10.5c.3.3.3.8 0 1.1-.3.3-.8.3-1.1 0L6 7.1l-4.5 4.5c-.3.3-.8.3-1.1 0-.3-.3-.3-.8 0-1.1L4.9 6 .5 1.5C.2 1.2.2.7.5.4c.3-.3.8-.3 1.1 0L6 4.9 10.5.4c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1L7.1 6l4.4 4.5z"></path></svg>
             </button>
@@ -117,7 +117,7 @@
             <h3 class="filter-header-title">FILTROS</h3>
           </div>
           <div class="filter-header-section right">
-            <a ng-click="ctrl.removeAllFilters()">Quitar filtros</a>
+            <a ng-click="vmFilters.removeAllFilters()">Quitar filtros</a>
           </div>
         </div>
         <div class="filter-body">
@@ -125,22 +125,22 @@
             class="filter-section row"
             ng-class="{ 
               'active': 
-                ctrl.overlay.current == 'disciplinas' || 
-                ctrl.overlay.current == 'all'
+                vmFilters.overlay.current == 'disciplinas' || 
+                vmFilters.overlay.current == 'all'
             }"
           >
             <div class="col-xs-12">
-              <h3>Disciplinas</h3>
+              <h3>Disciplinas</h3>  {{vmFilters.disciplinesArray}}      
             </div>
-            <div class="col-xs-6 col-sm-4" ng-repeat="disciplina in ctrl.disciplines" ng-if="disciplina.id > 0">
+            <div class="col-xs-6 col-sm-4" ng-repeat="disciplina in vmFilters.disciplines" ng-if="disciplina.id > 0">
               <div class="checkbox">
                 <label>
                   <input 
                     type="checkbox" 
                     name="selectedDisciplines[]"
                     value="{{disciplina.id}}"
-                    ng-checked="ctrl.disciplinesArray.data.indexOf(disciplina.id) > -1" 
-                    ng-click="ctrl.disciplinesArray.toggle(disciplina.id)"
+                    ng-checked="vmFilters.disciplinesArray.data.indexOf(disciplina.id) > -1" 
+                    ng-click="vmFilters.disciplinesArray.toggle(disciplina.id)"
                   > {{disciplina.name}}
                 </label>
               </div>
@@ -150,8 +150,8 @@
             class="filter-section row"
             ng-class="{ 
               'active': 
-                ctrl.overlay.current == 'cercania' || 
-                ctrl.overlay.current == 'all'
+                vmFilters.overlay.current == 'cercania' || 
+                vmFilters.overlay.current == 'all'
             }"
           >
             <div class="col-xs-12">
@@ -160,23 +160,23 @@
             <div class="col-xs-12">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" ng-change="ctrl.activateDistance();" ng-model="ctrl.activeDistance" name="" class="">
+                  <input type="checkbox" ng-change="vmFilters.activateDistance();" ng-model="vmFilters.activeDistance" name="" class="">
                    Filtrar por cercania (km)
                 </label>
               </div>
             </div>
             <div ng-if="ctrl.activeDistance == true " class="col-xs-12 animated fadeIn" >
               <rzslider
-                rz-slider-model="ctrl.distance"
-                rz-slider-options="ctrl.sliderOptions"></rzslider>
+                rz-slider-model="vmFilters.distance"
+                rz-slider-options="vmFilters.sliderOptions"></rzslider>
             </div>
           </div>
           <div 
             class="filter-section row"
             ng-class="{ 
               'active': 
-                ctrl.overlay.current == 'place' || 
-                ctrl.overlay.current == 'all'
+                vmFilters.overlay.current == 'place' || 
+                vmFilters.overlay.current == 'all'
             }"
           >
             <div class="col-xs-12">
@@ -202,7 +202,7 @@
                     type="text" 
                     class="form-control" 
                     placeholder="Buscar..." 
-                    ng-model="ctrl.txtLocation"
+                    ng-model="vmFilters.txtLocation"
                   >
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="submit" ng-click="ctrl.searchPlaces();" >
@@ -212,16 +212,16 @@
                 </div><!-- /input-group -->
               </form>
             </div><!-- /.col-lg-6 -->
-            <div class="col-xs-12 results" ng-show="ctrl.places.show" >
+            <div class="col-xs-12 results" ng-show="vmFilters.places.show" >
               <span>Selecciona</span><br/>
-              <div ng-repeat="place in ctrl.places.list" ng-click="ctrl.setPlace(place);">
+              <div ng-repeat="place in vmFilters.places.list" ng-click="vmFilters.setPlace(place);">
                  {{place.formatted_address}}
               </div>
             </div>
           </div>
         </div>
         <div class="filter-bottom">
-          <button class="btn btn-outline btn-block" ng-click="ctrl.applyAllFilters();">APLICAR FILTROS</button>
+          <button class="btn btn-outline btn-block" ng-click="vmFilters.applyAllFilters();">APLICAR FILTROS</button>
         </div>
       </div>
     </div>

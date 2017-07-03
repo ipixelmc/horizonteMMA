@@ -27,9 +27,9 @@
             lng: position.coords.longitude
           };
           setPoint(pos);
+         // ctrl.institutes.push({id:6465461, point: pos, name: 'Tú ubicación'});
         },
         function(error){
-          console.log(error);
           setPoint(ctrl.centerCountry);
         });
       }

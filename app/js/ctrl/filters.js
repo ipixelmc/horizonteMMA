@@ -6,7 +6,7 @@
   homeController.$inject = ['ModelService', 'MapService','$scope','$timeout'];
   function homeController(modelService, mapService, $scope, $timeout) {
     var ctrl = this;
-    ctrl.model = {};
+    //ctrl.model = {};
     var slider;
 
     ctrl.disciplinesArray = {
@@ -114,7 +114,6 @@
             ctrl.places.list = data.results;
           },
           function(error){
-            console.log(error);
             ctrl.messageErrorSearch = "Ocurrió un error al búscar lugares cercanos";
           }
           )
@@ -133,16 +132,12 @@
     }
 
     ctrl.filterByDiscipline = function(){
-      console.log('estoy filtrando');
       // if (ctrl.model.discipline.id > 0){
+        ctrl.model.discipline = ctrl.disciplinesArray.data;
       if (ctrl.disciplinesArray.data.length > 0) {
-        console.log('si hay foltro');
         _.forEach(ctrl.institutes, function(el) {
-          var dis = _.find(el.disciplinesObj, function(o){
-            return ctrl.disciplinesArray.data.indexOf(o.id) > -1 ? true:false
-            // return ctrl.model.discipline.id == o.id;
-          } );
-          if (dis){
+          var dis = _.intersection(el.disciplines, ctrl.model.discipline)
+          if (dis.length >0){
             _.set(el, 'showByDiscipline', true);
           }else{
             _.set(el, 'showByDiscipline', false);
@@ -182,7 +177,6 @@
    }
 
    ctrl.setPlace = function(place){
-     console.log("aplicando");
      ctrl.locationSelected = place;
      setOriginPoint(ctrl.locationSelected.geometry.location);
      ctrl.filterByLocation();
@@ -207,9 +201,7 @@
     }
 
     $scope.$on('filters.open', function(event, type) {
-      console.log(type);
-      if (type) {
-        console.log(type)
+     if (type) {
         ctrl.overlay.current = type;
       }
       ctrl.overlay.active = true;
@@ -218,7 +210,6 @@
     init();
 
    	ctrl.applyAllFilters = function(){
-   		console.log('mooooo');
       ctrl.filterByDiscipline();
       ctrl.searchPlaces();//llama busqueda de lugares
       $timeout(function () {
@@ -227,7 +218,6 @@
     }
 
     ctrl.removeAllFilters = function(){
-      console.log('remove');
       ctrl.disciplinesArray.data = [];
       ctrl.filterByDiscipline();
       ctrl.activateDistance();
