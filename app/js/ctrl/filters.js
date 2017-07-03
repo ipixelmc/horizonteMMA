@@ -218,9 +218,9 @@
     }
 
     ctrl.removeAllFilters = function(){
-      ctrl.disciplinesArray.data = [];
-      ctrl.filterByDiscipline();
-      ctrl.activateDistance();
+      ctrl.resetDiscipline();
+      ctrl.resetDistance();
+      ctrl.resetLocation();
       $timeout(function () {
         ctrl.overlay.active = false;
       },25);
