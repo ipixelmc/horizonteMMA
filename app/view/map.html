@@ -14,7 +14,7 @@
 	</button>
 	
 	<ng-map id="search-map" zoom="11" center="[{{ctrl.originPoint.lat}}, {{ctrl.originPoint.lng}}]">
-
+  <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
 		<custom-marker ng-repeat="ins in ctrl.institutes"
 		id="marker_{{ins.id}}"
 		on-click="ctrl.showInfoWindow(event,$index);"

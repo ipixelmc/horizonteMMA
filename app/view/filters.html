@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <button class="btn btn-filter" ng-click="ctrl.overlay.toggle('place')">
         <span class="label">
-          Ubicación           
+          Ubicación        
         </span>
         <span class="icon">
           <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
@@ -14,7 +14,7 @@
       {{ctrl.overlay.place}}
       <button class="btn btn-filter">
         <span class="label">
-          Disciplinas           
+          Disciplinas       
         </span>
         <span class="icon">
           <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;"><path fill-rule="evenodd" d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z"></path></svg>
@@ -67,7 +67,7 @@
 
   <div class="col-sm-12 detailed animated" ng-show="ctrl.showDetailed == true" ng-class="!ctrl.showDetailed ? 'fadeOut' : 'fadeIn'">
     <i ng-click="ctrl.showDetailed = false" ng-if="ctrl.showDetailed" class="animated fadeIn icon fa fa-times"></i>
-    
+    {{ctrl.filter}}
     <div class="row">
       <div class="col-ms-12">
         <div class="form-group">

@@ -11,7 +11,7 @@
       disciplines: new Array(0),
       instituteSelected : new Institute({}),
       filters : {
-        discipline: new Object(),
+        discipline: new Array(0),
         activeDistance: new Boolean(false),
         distance: 0
       }
