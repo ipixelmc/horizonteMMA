@@ -222,13 +222,9 @@
     }
 
     ctrl.removeAllFilters = function(){
-      ctrl.locationSelected = {};
-      ctrl.disciplinesArray.data = [];
-      ctrl.txtLocation = "";
-      ctrl.searchPlaces();
-      // ctrl.filterByLocation();
-      ctrl.filterByDiscipline();
-      ctrl.activateDistance();
+      ctrl.resetDiscipline();
+      ctrl.resetDistance();
+      ctrl.resetLocation();
       $timeout(function () {
         ctrl.overlay.active = false;
       },25);
