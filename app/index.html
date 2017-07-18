@@ -213,9 +213,11 @@
               </form>
             </div><!-- /.col-lg-6 -->
             <div class="col-xs-12 results" ng-show="vmFilters.places.show" >
-              <span>Selecciona</span><br/>
-              <div ng-repeat="place in vmFilters.places.list" ng-click="vmFilters.setPlace(place);">
-                 {{place.formatted_address}}
+              <div class="results-content">
+                <span>Selecciona</span><br/>
+                <div class="results-item" ng-repeat="place in vmFilters.places.list" ng-click="vmFilters.setPlace(place);">
+                   {{place.formatted_address}}
+                </div>
               </div>
             </div>
           </div>

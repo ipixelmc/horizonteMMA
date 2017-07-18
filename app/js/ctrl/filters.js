@@ -151,13 +151,16 @@
       }
     }
 
+    // TODO DA POSITIVO CON CAMBIO
+
     ctrl.filterByLocation = function(){
       if(ctrl.locationSelected.formatted_address){
         ctrl.txtLocation = ctrl.locationSelected.formatted_address;
-        var boundsPoint = ctrl.locationSelected.geometry.bounds;
+        var boundsPoint = ctrl.locationSelected.geometry.location;
         var bounds = new google.maps.LatLngBounds(boundsPoint.southwest, boundsPoint.northeast);
-
+        // mapService.setUserPoint(boundsPoint);
         _.forEach(ctrl.institutes, function(el) {
+          console.log('muestra');
           if(bounds.contains({lat: el.lat, lng: el.lng})){
             _.set(el, 'showByLocation', true);
           }else{
@@ -172,16 +175,17 @@
    }
 
    var setOriginPoint = function(point){
-     mapService.setOriginPoint(point);
-
+     mapService.setUserPoint(point);
    }
 
    ctrl.setPlace = function(place){
-     ctrl.locationSelected = place;
-     setOriginPoint(ctrl.locationSelected.geometry.location);
-     ctrl.filterByLocation();
-     modelService.calculateDistance();
-     ctrl.activateDistance();
+    console.log(place);
+    ctrl.locationSelected = place;
+    setOriginPoint(ctrl.locationSelected.geometry.location);
+    ctrl.filterByLocation();
+    modelService.calculateDistance();
+    ctrl.activateDistance();
+    ctrl.places.show = false;
    }
 
    ctrl.resetLocation = function(){
@@ -218,7 +222,11 @@
     }
 
     ctrl.removeAllFilters = function(){
+      ctrl.locationSelected = {};
       ctrl.disciplinesArray.data = [];
+      ctrl.txtLocation = "";
+      ctrl.searchPlaces();
+      // ctrl.filterByLocation();
       ctrl.filterByDiscipline();
       ctrl.activateDistance();
       $timeout(function () {

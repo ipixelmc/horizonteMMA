@@ -11,6 +11,7 @@
     ctrl.showButtonMore = true;
     var init = function(){
       ctrl.institutes = modelService.getInstitutes();
+      console.log(ctrl.institutes);
       ctrl.filters = modelService.getFilters();
     }
 

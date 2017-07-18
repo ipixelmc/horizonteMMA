@@ -36,6 +36,7 @@
 
       $scope.$watch('ctrl.filters', function(newValue, oldValue) {
         refreshMarkers();
+        // setPoint(ctrl.userPoint);
       },true);
 
     }

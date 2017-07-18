@@ -106,11 +106,13 @@
         </div>
       </div>
     </div>
-    <div class="row results" ng-show="ctrl.places.show" >
-    <span>Selecciona</span><br/>
-    <div class="col-md-4" ng-repeat="place in ctrl.places.list" ng-click="ctrl.setPlace(place);">
-       {{place.formatted_address}}
-    </div>
+    <div class="row results" ng-show="ctrl.places.show">
+      <div class="results-content">
+        <span>Selecciona</span><br/>
+        <div class="col-md-4 results-item" ng-repeat="place in ctrl.places.list" ng-click="ctrl.setPlace(place);">
+           {{place.formatted_address}}
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
   angular.module('horizonteMMAModule')
     .filter('tokilometers', function () {
       return function (distance) {
-        return Math.round( distance * 0.001 * 10) / 10 + ' km';
+        return Math.round( distance * 1 * 10) / 10 + ' km';
       };
     });
-})(window.angular);  
+})(window.angular);
